@@ -1,16 +1,56 @@
-# Introduction 
-Projeto de forum usando tres conteineres no docker
+# WebForum API 
+Web forum API with simple CRUD operations, SQL Server and Docker.
+
+So far, this API stands users on any permission , as long as it's logged in.
+
+![alt text](https://github.com/IovanB/webforum/blob/master/imgswagger.png)
+
+Tecnologies:
+
+- .NETCORE 3.1
+- Entityframework
+- Docker
+- SQL Server
+- JwtToken
+- Swagger
+- Xunit
+
 
 # Getting Started
-O projeto sera parecido com os grandes foruns da internet, como o reddit ou o stackoverflow.
+Warning : <b>You should have Docker running on your computer first</b>
 
-# Build and Test
-TODO: Describe and show how to build your code and run the tests. 
+1. Clone the project: 
+        `https://github.com/IovanB/webforum.git`
+2. Through prompt command go to folder webforum\WebForum where the docker-compose.yml file is. Then type `docker-compose up -d --build`
 
-# Contribute
-TODO: Explain how other users and developers can contribute to make your code better. 
+3. Check with the command `docker ps` which port the swagger is up.  Then type localhost:{port shown on the prompt line}
 
-If you want to learn more about creating good readme files then refer the following [guidelines](https://docs.microsoft.com/en-us/azure/devops/repos/git/create-a-readme?view=azure-devops). You can also seek inspiration from the below readme files:
-- [ASP.NET Core](https://github.com/aspnet/Home)
-- [Visual Studio Code](https://github.com/Microsoft/vscode)
-- [Chakra Core](https://github.com/Microsoft/ChakraCore)
+4. You can also run the API on Visual Studio
+
+# How to use
+
+1. You first need to create an User in order to use the API
+2. Log in with your new user
+3. Take the Jwt Bearer Token, click on the Authorize button on your upper-left, then type bearer YOURTOKEN 
+
+![alt text](https://github.com/IovanB/webforum/blob/master/token.png)
+
+![alt text](https://github.com/IovanB/webforum/blob/master/autho.png)
+
+## Scheme
+1. This API works on the following scheme
+  - Category
+  - Topic
+  - Post
+  - Comment
+
+## Unit test
+1. This API comes with Xunit test.<\br>
+
+
+## Improvments: 
+1. User permissions
+2. Password cryptography
+3. DTO
+4. Integration test<\br>
+
