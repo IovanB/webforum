@@ -29,7 +29,7 @@ services:
   #db-pgadmin:
   #  image: iovanb/dpadmin
    # environment:
-    #  PGADMIN_DEFAULT_EMAIL: "iovan.barros@globalweb.com.br"
+    #  PGADMIN_DEFAULT_EMAIL: "myemailAddress@gmail.com"
      # PGADMIN_DEFAULT_PASSWORD: "postgres"
    # ports:
    #   - "16543:80"
