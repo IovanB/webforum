@@ -1,0 +1,17 @@
+version: '3.7'
+
+services:
+  webforum.webforumapi:
+    image: ${DOCKER_REGISTRY-}webforumwebforumapi
+    build:
+      context: .
+      dockerfile: WebForum/Dockerfile
+    networks:
+     - webforum-network
+
+networks:
+   webforum-network:
+     driver: bridge
+
+#  db-data:
+
