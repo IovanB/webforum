@@ -45,12 +45,12 @@ Warning : <b>You should have Docker running on your computer first</b>
   - Comment
 
 ## Unit test
-1. This API comes with Xunit test.<\br>
+1. This API comes with Xunit test.
 
 
 ## Improvments: 
 1. User permissions
 2. Password cryptography
 3. DTO
-4. Integration test<\br>
+4. Integration test
 
