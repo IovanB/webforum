@@ -5,7 +5,6 @@ services:
     environment:
       ASPNETCORE_ENVIRONMENT: Development
       DATABASE_CONN: Server=db;Database=DBapi;User=sa;Password=sql_server1;
-     # DATABASE_CONN: Host=db;Port=5432;Database=postgres;User Id=postgres;Password=postgres;
     ports:
       - "80"
     depends_on:
@@ -25,22 +24,6 @@ services:
       - "1433:1433"
     networks:
       - webforum-network
-      
-  #db-pgadmin:
-  #  image: iovanb/dpadmin
-   # environment:
-    #  PGADMIN_DEFAULT_EMAIL: "myemailAddress@gmail.com"
-     # PGADMIN_DEFAULT_PASSWORD: "postgres"
-   # ports:
-   #   - "16543:80"
-   # depends_on:
-   #   - db
-   # networks:
-   #   - webforum-network
   
 networks:
   webforum-network:
-
-#volumes:
- # db-data:
-

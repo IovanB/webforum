@@ -1,7 +1,5 @@
 ﻿using Moq;
 using System;
-using System.Collections.Generic;
-using System.Text;
 using WebForum.Application.Repositories;
 using WebForum.Application.UseCase.Category;
 using WebForum.Domain.Entities;

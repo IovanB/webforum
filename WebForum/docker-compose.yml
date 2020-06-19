@@ -12,6 +12,3 @@ services:
 networks:
    webforum-network:
      driver: bridge
-
-#  db-data:
-
