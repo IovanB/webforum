@@ -1,8 +1,9 @@
-﻿using WebForum.Application.Repositories;
+﻿using Application.UseCase.User.Add;
+using WebForum.Application.Repositories;
 
 namespace WebForum.Application.UseCase.User
 {
-    public class AddUserUseCase 
+    public class AddUserUseCase : IAddUserUseCase
     {
         private readonly IWriteOnlyUseCase<Domain.Entities.User> userWriteOnlyUseCase;
 

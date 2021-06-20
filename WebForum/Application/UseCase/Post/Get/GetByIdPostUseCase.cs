@@ -1,17 +1,18 @@
-﻿using System;
-using WebForum.Application.Repositories;
+﻿using Application.Repositories.Interfaces;
+using Application.UseCase.Post.Get;
+using System;
 
 namespace WebForum.Application.UseCase.Post
 {
-    public class GetByIdPostUseCase
+    public class GetByIdPostUseCase : IGetByIdPostUseCase
     {
-        private readonly IReadOnlyUseCase<Domain.Entities.Post> postReadOnlyUseCase;
+        private readonly IPostReadOnlyUseCase postReadOnlyUseCase;
 
         public Domain.Entities.Post GetById(Guid id)
         {
             return postReadOnlyUseCase.GetById(id);
         }
-        public GetByIdPostUseCase(IReadOnlyUseCase<Domain.Entities.Post> postReadOnlyUseCase)
+        public GetByIdPostUseCase(IPostReadOnlyUseCase postReadOnlyUseCase)
         {
             this.postReadOnlyUseCase = postReadOnlyUseCase;
         }

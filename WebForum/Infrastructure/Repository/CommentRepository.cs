@@ -1,13 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using Application.Repositories.Interfaces;
 using Microsoft.EntityFrameworkCore;
-using WebForum.Application.Repositories;
 using WebForum.Domain.Entities;
 
 namespace WebForum.Infrastructure.Repository
 {
-    public class CommentRepository : IWriteOnlyUseCase<Comment>, IReadOnlyUseCase<Comment>
+    public class CommentRepository : ICommentWriteOnlyUseCase, ICommentReadOnlyUseCase
     {
         public int Add(Comment comment)
         {

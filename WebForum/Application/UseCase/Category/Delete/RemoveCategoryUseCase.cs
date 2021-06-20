@@ -1,16 +1,17 @@
-﻿using WebForum.Application.Repositories;
+﻿using Application.Repositories.Interfaces;
+using Application.UseCase.Category.Delete;
 
 namespace WebForum.Application.UseCase.Category
 {
-    public class RemoveCategoryUseCase 
+    public class RemoveCategoryUseCase : IRemoveCategoryUseCase
     {
-        private readonly IWriteOnlyUseCase<Domain.Entities.Category> categoryWriteOnlyUseCase;
+        private readonly ICategoryWriteOnlyUseCase categoryWriteOnlyUseCase;
 
         public int Remove(Domain.Entities.Category entity)
         {
             return categoryWriteOnlyUseCase.Remove(entity);
         }
-        public RemoveCategoryUseCase(IWriteOnlyUseCase<Domain.Entities.Category> categoryWriteOnlyUseCase)
+        public RemoveCategoryUseCase(ICategoryWriteOnlyUseCase categoryWriteOnlyUseCase)
         {
             this.categoryWriteOnlyUseCase = categoryWriteOnlyUseCase;
         }

@@ -1,19 +1,19 @@
-﻿using WebForum.Application.Repositories;
+﻿using Application.Repositories.Interfaces;
+using Application.UseCase.Topic.Delete;
 
 namespace WebForum.Application.UseCase.Topic
 {
-    public class RemoveTopicUseCase
+    public class RemoveTopicUseCase : IRemoveTopicUseCase
     {
-        private readonly IWriteOnlyUseCase<Domain.Entities.Topic> topicWriteOnlyUseCase;
-
-        public RemoveTopicUseCase(IWriteOnlyUseCase<Domain.Entities.Topic> topicWriteOnlyUseCase)
-        {
-            this.topicWriteOnlyUseCase = topicWriteOnlyUseCase;
-        }
+        private readonly ITopicWriteOnlyUseCase topicWriteOnlyUseCase;
 
         public int Remove(Domain.Entities.Topic entity)
         {
             return topicWriteOnlyUseCase.Remove(entity);
+        }
+        public RemoveTopicUseCase(ITopicWriteOnlyUseCase topicWriteOnlyUseCase)
+        {
+            this.topicWriteOnlyUseCase = topicWriteOnlyUseCase;
         }
     }
 }

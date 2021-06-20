@@ -1,17 +1,18 @@
-﻿using System.Collections.Generic;
-using WebForum.Application.Repositories;
+﻿using Application.Repositories.Interfaces;
+using Application.UseCase.Category.Get;
+using System.Collections.Generic;
 
 namespace WebForum.Application.UseCase.Category
 {
-    public class GetAllCategoryUseCase
+    public class GetAllCategoryUseCase : IGetAllCategoryUseCase
     {
-        private readonly IReadOnlyUseCase<Domain.Entities.Category> categoryReadOnlyUseCase;
+        private readonly ICategoryReadOnlyUseCase categoryReadOnlyUseCase;
 
         public List<Domain.Entities.Category> GetAll()
         {
             return categoryReadOnlyUseCase.GetAll();
         }
-        public GetAllCategoryUseCase(IReadOnlyUseCase<Domain.Entities.Category> categoryReadOnlyUseCase)
+        public GetAllCategoryUseCase(ICategoryReadOnlyUseCase categoryReadOnlyUseCase)
         {
             this.categoryReadOnlyUseCase = categoryReadOnlyUseCase;
         }

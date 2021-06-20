@@ -1,9 +1,10 @@
-﻿using System.Collections.Generic;
+﻿using Application.UseCase.Comment.Get;
+using System.Collections.Generic;
 using WebForum.Application.Repositories;
 
 namespace WebForum.Application.UseCase.Comment
 {
-    public class GetAllCommentUseCase
+    public class GetAllCommentUseCase : IGetAllCommentUseCase
     {
         private readonly IReadOnlyUseCase<Domain.Entities.Comment> commentReadOnlyUseCase;
 

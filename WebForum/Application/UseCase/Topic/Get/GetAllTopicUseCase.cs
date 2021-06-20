@@ -1,13 +1,14 @@
-﻿using System.Collections.Generic;
-using WebForum.Application.Repositories;
+﻿using Application.Repositories.Interfaces;
+using Application.UseCase.Topic.Get;
+using System.Collections.Generic;
 
 namespace WebForum.Application.UseCase.Topic
 {
-    public class GetAllTopicUseCase 
+    public class GetAllTopicUseCase : IGetAllTopicUseCase
     {
-        private readonly IReadOnlyUseCase<Domain.Entities.Topic> topicReadOnlyUseCase;
+        private readonly ITopicReadOnlyUseCase topicReadOnlyUseCase;
 
-        public GetAllTopicUseCase(IReadOnlyUseCase<Domain.Entities.Topic> topicReadOnlyUseCase)
+        public GetAllTopicUseCase(ITopicReadOnlyUseCase topicReadOnlyUseCase)
         {
             this.topicReadOnlyUseCase = topicReadOnlyUseCase;
         }

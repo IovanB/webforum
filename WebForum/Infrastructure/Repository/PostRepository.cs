@@ -1,13 +1,13 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Application.Repositories.Interfaces;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using WebForum.Application.Repositories;
 using WebForum.Domain.Entities;
 
 namespace WebForum.Infrastructure.Repository
 {
-    public class PostRepository : IWriteOnlyUseCase<Post>, IReadOnlyUseCase<Post>
+    public class PostRepository : IPostWriteOnlyUseCase, IPostReadOnlyUseCase
     {
         public int Add(Post post)
         {

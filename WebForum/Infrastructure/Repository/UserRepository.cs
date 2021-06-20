@@ -1,12 +1,12 @@
-﻿using System;
+﻿using Application.Repositories.Interfaces;
+using System;
 using System.Collections.Generic;
 using System.Linq;
-using WebForum.Application.Repositories;
 using WebForum.Domain.Entities;
 
 namespace WebForum.Infrastructure.Repository
 {
-    public class UserRepository : IWriteOnlyUseCase<User>, IReadOnlyUseCase<User>
+    public class UserRepository : IUserReadOnlyUseCase, IUserWriteOnlyUseCase
     {
 
         public int Add(User user)

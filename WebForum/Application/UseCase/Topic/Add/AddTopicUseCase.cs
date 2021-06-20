@@ -1,12 +1,13 @@
-﻿using WebForum.Application.Repositories;
+﻿using Application.Repositories.Interfaces;
+using Application.UseCase.Topic.Add;
 
 namespace WebForum.Application.UseCase.Topic
 {
-    public class AddTopicUseCase
+    public class AddTopicUseCase : IAddTopicUseCase
     {
-        private readonly IWriteOnlyUseCase<Domain.Entities.Topic> topicWriteOnlyUseCase;
+        private readonly ITopicWriteOnlyUseCase topicWriteOnlyUseCase;
 
-        public AddTopicUseCase(IWriteOnlyUseCase<Domain.Entities.Topic> topicWriteOnlyUseCase)
+        public AddTopicUseCase(ITopicWriteOnlyUseCase topicWriteOnlyUseCase)
         {
             this.topicWriteOnlyUseCase = topicWriteOnlyUseCase;
         }

@@ -1,12 +1,13 @@
-﻿using WebForum.Application.Repositories;
+﻿using Application.Repositories.Interfaces;
+using Application.UseCase.Topic.Update;
 
 namespace WebForum.Application.UseCase.Topic
 {
-    public class UpdateTopicUseCase 
+    public class UpdateTopicUseCase : IUpdateTopicUseCase
     {
-        private readonly IWriteOnlyUseCase<Domain.Entities.Topic> topicWriteOnlyUseCase;
+        private readonly ITopicWriteOnlyUseCase topicWriteOnlyUseCase;
 
-        public UpdateTopicUseCase(IWriteOnlyUseCase<Domain.Entities.Topic> topicWriteOnlyUseCase)
+        public UpdateTopicUseCase(ITopicWriteOnlyUseCase topicWriteOnlyUseCase)
         {
             this.topicWriteOnlyUseCase = topicWriteOnlyUseCase;
         }

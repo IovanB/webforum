@@ -1,16 +1,17 @@
-﻿using WebForum.Application.Repositories;
+﻿using Application.Repositories.Interfaces;
+using Application.UseCase.Category.Update;
 
 namespace WebForum.Application.UseCase.Category
 {
-    public class UpdateCategoryUseCase
+    public class UpdateCategoryUseCase : IUpdateCategoryUseCase
     {
-        private readonly IWriteOnlyUseCase<Domain.Entities.Category> categoryWriteOnlyUseCase;
+        private readonly ICategoryWriteOnlyUseCase categoryWriteOnlyUseCase;
 
         public int Update(Domain.Entities.Category entity)
         {
             return categoryWriteOnlyUseCase.Update(entity);
         }
-        public UpdateCategoryUseCase(IWriteOnlyUseCase<Domain.Entities.Category> categoryWriteOnlyUseCase)
+        public UpdateCategoryUseCase(ICategoryWriteOnlyUseCase categoryWriteOnlyUseCase)
         {
             this.categoryWriteOnlyUseCase = categoryWriteOnlyUseCase;
         }

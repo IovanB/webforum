@@ -1,9 +1,10 @@
-﻿using System.Collections.Generic;
+﻿using Application.UseCase.User.Get;
+using System.Collections.Generic;
 using WebForum.Application.Repositories;
 
 namespace WebForum.Application.UseCase.User
 {
-    public class GetAllUserUseCase 
+    public class GetAllUserUseCase : IGetAllUserUseCase
     {
         private readonly IReadOnlyUseCase<Domain.Entities.User> userReadOnlyUseCase;
 

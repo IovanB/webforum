@@ -1,9 +1,10 @@
-﻿using System;
+﻿using Application.UseCase.User.Get;
+using System;
 using WebForum.Application.Repositories;
 
 namespace WebForum.Application.UseCase.User
 {
-    public class GetByIdUserUseCase 
+    public class GetByIdUserUseCase : IGetByIdUserUseCase
     {
         private readonly IReadOnlyUseCase<Domain.Entities.User> userReadOnlyUseCase;
 

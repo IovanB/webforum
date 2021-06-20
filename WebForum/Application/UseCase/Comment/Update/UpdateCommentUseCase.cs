@@ -1,8 +1,9 @@
-﻿using WebForum.Application.Repositories;
+﻿using Application.UseCase.Comment.Update;
+using WebForum.Application.Repositories;
 
 namespace WebForum.Application.UseCase.Comment
 {
-    public class UpdateCommentUseCase 
+    public class UpdateCommentUseCase : IUpdateCommentUseCase
     {
         private readonly IWriteOnlyUseCase<Domain.Entities.Comment> commentWriteOnlyUseCase;
 

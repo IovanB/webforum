@@ -1,17 +1,18 @@
-﻿using System;
-using WebForum.Application.Repositories;
+﻿using Application.Repositories.Interfaces;
+using Application.UseCase.Category.Get;
+using System;
 
 namespace WebForum.Application.UseCase.Category
 {
-    public class GetByIdCategoryUseCase
+    public class GetByIdCategoryUseCase: IGetByIdCategoryUseCase
     { 
-        private readonly IReadOnlyUseCase<Domain.Entities.Category> categoryReadOnlyUseCase;
+        private readonly ICategoryReadOnlyUseCase categoryReadOnlyUseCase;
 
         public Domain.Entities.Category GetById(Guid id)
         {
             return categoryReadOnlyUseCase.GetById(id);
         }
-        public GetByIdCategoryUseCase(IReadOnlyUseCase<Domain.Entities.Category> categoryReadOnlyUseCase)
+        public GetByIdCategoryUseCase(ICategoryReadOnlyUseCase categoryReadOnlyUseCase)
         {
             this.categoryReadOnlyUseCase = categoryReadOnlyUseCase;
         }

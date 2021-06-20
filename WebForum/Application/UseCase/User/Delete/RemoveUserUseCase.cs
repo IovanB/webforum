@@ -1,9 +1,9 @@
-﻿using System;
+﻿using Application.UseCase.User.Delete;
 using WebForum.Application.Repositories;
 
 namespace WebForum.Application.UseCase.User
 {
-    public class RemoveUserUseCase
+    public class RemoveUserUseCase : IRemoveUserUseCase
     {
         private readonly IWriteOnlyUseCase<Domain.Entities.User> userWriteOnlyUseCase;
 

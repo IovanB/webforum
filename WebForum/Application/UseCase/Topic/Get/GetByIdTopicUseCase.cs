@@ -1,13 +1,14 @@
-﻿using System;
-using WebForum.Application.Repositories;
+﻿using Application.Repositories.Interfaces;
+using Application.UseCase.Topic.Get;
+using System;
 
 namespace WebForum.Application.UseCase.Topic
 {
-    public class GetByIdTopicUseCase
+    public class GetByIdTopicUseCase : IGetByIdTopicUseCase
     {
-        private readonly IReadOnlyUseCase<Domain.Entities.Topic> topicReadOnlyUseCase;
+        private readonly ITopicReadOnlyUseCase topicReadOnlyUseCase;
 
-        public GetByIdTopicUseCase(IReadOnlyUseCase<Domain.Entities.Topic> topicReadOnlyUseCase)
+        public GetByIdTopicUseCase(ITopicReadOnlyUseCase topicReadOnlyUseCase)
         {
             this.topicReadOnlyUseCase = topicReadOnlyUseCase;
         }

@@ -1,12 +1,12 @@
-﻿using System;
+﻿using Application.Repositories.Interfaces;
+using System;
 using System.Collections.Generic;
 using System.Linq;
-using WebForum.Application.Repositories;
 using WebForum.Domain.Entities;
 
 namespace WebForum.Infrastructure.Repository
 {
-    public class CategoryRepository : IWriteOnlyUseCase<Category>, IReadOnlyUseCase<Category>
+    public class CategoryRepository : ICategoryWriteOnlyUseCase, ICategoryReadOnlyUseCase
     {
         public int Add(Category category)
         {
