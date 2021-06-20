@@ -3,6 +3,10 @@ using Microsoft.AspNetCore.Mvc;
 using WebForum.Domain.Validators;
 using WebForum.Application.UseCase.Category;
 using Microsoft.AspNetCore.Authorization;
+using Application.UseCase.Category.Add;
+using Application.UseCase.Category.Delete;
+using Application.UseCase.Category.Update;
+using Application.UseCase.Category.Get;
 
 namespace WebForum.WebForumApi.UseCase.Category
 {

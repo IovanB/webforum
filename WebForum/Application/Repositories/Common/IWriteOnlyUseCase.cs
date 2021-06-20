@@ -1,9 +1,11 @@
-﻿namespace WebForum.Application.Repositories
+﻿using System;
+
+namespace WebForum.Application.Repositories
 {
     public interface IWriteOnlyUseCase <TEntity>
     {
         int Add(TEntity entity);
-        int Remove(TEntity entity);
-        int Update(TEntity entity);
+        int Remove(Guid id);
+        int Update(Guid id);
     }
 }

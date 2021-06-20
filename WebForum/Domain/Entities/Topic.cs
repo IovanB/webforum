@@ -16,7 +16,7 @@ namespace WebForum.Domain.Entities
             Category = category;
             CreatedAt = DateTime.Now;
             UpdatedAt = DateTime.Now;
-            new TopicValidator();
+            Validate(this,new TopicValidator());
         }
     }
 }

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Application.Repositories.Interfaces;
+using System;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Security.Principal;

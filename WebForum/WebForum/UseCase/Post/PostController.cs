@@ -1,13 +1,12 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+using Application.UseCase.Post.Add;
+using Application.UseCase.Post.Delete;
+using Application.UseCase.Post.Get;
+using Application.UseCase.Post.Update;
+using Application.UseCase.Topic.Get;
+using Application.UseCase.User.Get;
 using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using WebForum.Application.UseCase.Post;
-using WebForum.Application.UseCase.Topic;
-using WebForum.Application.UseCase.User;
 using WebForum.Domain.Validators;
 
 namespace WebForum.WebForumApi.UseCase.Post

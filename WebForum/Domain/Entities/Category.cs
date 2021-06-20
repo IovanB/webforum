@@ -7,11 +7,11 @@ namespace WebForum.Domain.Entities
     {
         public string Name { get; private set; }
 
-        public Category(string name)
+        public Category(Guid id,string name)
         {
-            Id = Guid.NewGuid();
+            Id = id;
             Name = name;
-            new CategoryValidator();
+            Validate(this,new CategoryValidator());
         }
     }
 }

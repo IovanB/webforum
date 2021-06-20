@@ -20,7 +20,7 @@ namespace WebForum.Domain.Entities
             Topic = topicId;
             Author = user;
             UpdatedAt = DateTime.Now;
-            new PostValidator();
+            Validate(this,new PostValidator());
         }
     }
 }

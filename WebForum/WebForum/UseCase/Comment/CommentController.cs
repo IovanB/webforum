@@ -1,10 +1,12 @@
 ﻿using System;
-using System.Collections.Generic;
+using Application.UseCase.Comment.Add;
+using Application.UseCase.Comment.Delete;
+using Application.UseCase.Comment.Get;
+using Application.UseCase.Comment.Update;
+using Application.UseCase.Post.Get;
+using Application.UseCase.User.Get;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using WebForum.Application.UseCase.Comment;
-using WebForum.Application.UseCase.Post;
-using WebForum.Application.UseCase.User;
 using WebForum.Domain.Validators;
 
 namespace WebForum.WebForumApi.UseCase.Comment

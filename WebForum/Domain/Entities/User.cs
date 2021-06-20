@@ -11,8 +11,6 @@ namespace WebForum.Domain.Entities
         public DateTime Birthday { get; private set; }
 
         public string Password { get; private set; }
-        //public int UserType { get; private set; }
-
         public User(string name, string email, string password)
         {
             Id = Guid.NewGuid();
@@ -21,8 +19,7 @@ namespace WebForum.Domain.Entities
             Password = password;
             CreatedAt = DateTime.Now;
             UpdatedAt = DateTime.Now;
-            //UserType = 0;
-            new UserValidator();
+            Validate(this,new UserValidator());
         }
     }
 }

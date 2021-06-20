@@ -1,10 +1,12 @@
 ﻿using System;
-using System.Collections.Generic;
+using Application.UseCase.Category.Get;
+using Application.UseCase.Topic.Add;
+using Application.UseCase.Topic.Delete;
+using Application.UseCase.Topic.Get;
+using Application.UseCase.Topic.Update;
+using Application.UseCase.User.Get;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using WebForum.Application.UseCase.Category;
-using WebForum.Application.UseCase.Topic;
-using WebForum.Application.UseCase.User;
 using WebForum.Domain.Validators;
 
 namespace WebForum.WebForumApi.UseCase.Topic

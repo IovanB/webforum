@@ -1,5 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
+using Application.UseCase.User.Add;
+using Application.UseCase.User.Delete;
+using Application.UseCase.User.Get;
+using Application.UseCase.User.Update;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using WebForum.Application.Repositories;
@@ -130,7 +133,7 @@ namespace WebForum.WebForumApi.UseCase.User
                 return BadRequest();
             }
 
-            var user = new Domain.Entities.User(updateUser.Id, name, updateUser.Email, updateUser.Password, updateUser.CreatedAt, updateUser.UserType);
+            var user = new Domain.Entities.User(updateUser.Id, name, updateUser.Email, updateUser.Password, updateUser.CreatedAt);
 
             var validationResult = new UserValidator().Validate(user);
 

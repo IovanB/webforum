@@ -1,4 +1,5 @@
 ﻿using System;
+using WebForum.Domain.Validators;
 
 namespace WebForum.Domain.Entities
 {
@@ -8,9 +9,6 @@ namespace WebForum.Domain.Entities
         public string Content { get; private set; }
         
         public Post Post { get; set; }
-        //[DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}")]
-        //public DateTime CreatedAt { get; private set; }
-
         public Comment( string content, Post postId, User user)
         {
             Id = Guid.NewGuid();
@@ -19,6 +17,7 @@ namespace WebForum.Domain.Entities
             Author = user;
             CreatedAt = DateTime.Now;
             UpdatedAt = DateTime.Now;
+            Validate(this, new CommentValidator());
         }
     }
 }
