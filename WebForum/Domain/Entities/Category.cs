@@ -13,6 +13,5 @@ namespace WebForum.Domain.Entities
             Name = name;
             new CategoryValidator();
         }
-
     }
 }

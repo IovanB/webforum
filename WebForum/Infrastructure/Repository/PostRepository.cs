@@ -2,13 +2,12 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using WebForum.Application.Repositories;
 using WebForum.Domain.Entities;
 
 namespace WebForum.Infrastructure.Repository
 {
-    public class PostRepository : IPostWriteOnlyUseCase, IPostReadOnlyUseCase
+    public class PostRepository : IWriteOnlyUseCase<Post>, IReadOnlyUseCase<Post>
     {
         public int Add(Post post)
         {

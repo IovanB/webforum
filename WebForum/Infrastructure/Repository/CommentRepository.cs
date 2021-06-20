@@ -7,7 +7,7 @@ using WebForum.Domain.Entities;
 
 namespace WebForum.Infrastructure.Repository
 {
-    public class CommentRepository : ICommentWriteOnlyUseCase, ICommentReadOnlyUseCase
+    public class CommentRepository : IWriteOnlyUseCase<Comment>, IReadOnlyUseCase<Comment>
     {
         public int Add(Comment comment)
         {

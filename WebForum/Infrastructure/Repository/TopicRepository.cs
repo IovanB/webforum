@@ -7,15 +7,12 @@ using WebForum.Domain.Entities;
 
 namespace WebForum.Infrastructure.Repository
 {
-    public class TopicRepository : ITopicWriteOnlyUseCase, ITopicReadOnlyUseCase
+    public class TopicRepository : IWriteOnlyUseCase<Topic>, IReadOnlyUseCase<Topic>
     {
         public int Add(Topic topic)
         {
             using (var context = new Context.ApplicationContext())
             {
-                /*var correct = context.Category.Find(topic.Category.Id);
-                topic.Category = correct;*/
-
                 context.Category.Attach(topic.Category);
 
                 context.Add(topic);
@@ -25,7 +22,6 @@ namespace WebForum.Infrastructure.Repository
 
         public List<Topic> GetAll()
         {
-
             using (var context = new Context.ApplicationContext())
             {
                 return context.Topic.Include(x => x.Category).ToList();
@@ -43,7 +39,6 @@ namespace WebForum.Infrastructure.Repository
 
         public int Remove(Topic topic)
         {
-
             using (var context = new Context.ApplicationContext())
             {
                 context.Remove(topic);
@@ -53,7 +48,6 @@ namespace WebForum.Infrastructure.Repository
 
         public int Update(Topic topic)
         {
-
             using (var context = new Context.ApplicationContext())
             {
                 context.Update(topic);

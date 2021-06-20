@@ -2,12 +2,11 @@
 using System.Collections.Generic;
 using System.Linq;
 using WebForum.Application.Repositories;
-using WebForum.Application.UseCase.Token;
 using WebForum.Domain.Entities;
 
 namespace WebForum.Infrastructure.Repository
 {
-    public class UserRepository : IUserWriteOnlyUseCase, IUserReadOnlyUseCase
+    public class UserRepository : IWriteOnlyUseCase<User>, IReadOnlyUseCase<User>
     {
 
         public int Add(User user)

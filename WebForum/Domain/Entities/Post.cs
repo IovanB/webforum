@@ -22,6 +22,5 @@ namespace WebForum.Domain.Entities
             UpdatedAt = DateTime.Now;
             new PostValidator();
         }
-        
     }
 }
