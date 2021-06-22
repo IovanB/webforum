@@ -4,7 +4,7 @@ using System.Text;
 
 namespace Application.UseCase.Category.GetAll
 {
-    public interface ICategoryGetAllUseCase
+    public interface ICommentGetAllUseCase
     {
         void Execute();
     }

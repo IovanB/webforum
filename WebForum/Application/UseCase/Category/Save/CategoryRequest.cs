@@ -2,16 +2,15 @@
 
 namespace Application.UseCase.Category.Save
 {
-    public class CategoryRequest
+    public class CategorytRequest
     {
         public WebForum.Domain.Entities.Category Category { get; private set; }
-
-        public CategoryRequest(string name)
+        public CategorytRequest(string name)
         {
-            Category = new WebForum.Domain.Entities.Category(Guid.NewGuid(),name);
+            Category = new WebForum.Domain.Entities.Category(Guid.NewGuid(), name);
         }
 
-        public CategoryRequest(Guid id, string name)
+        public CategorytRequest(Guid id, string name)
         {
             Category = new WebForum.Domain.Entities.Category(id, name);
         }

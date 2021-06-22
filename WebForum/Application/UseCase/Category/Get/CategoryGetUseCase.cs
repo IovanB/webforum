@@ -6,12 +6,12 @@ using System.Text;
 
 namespace Application.UseCase.Category.Get
 {
-    public class CategoryGetUseCase : ICategoryGetUseCase
+    public class CommentGetUseCase : ICommentGetUseCase
     {
         private readonly IOutputPort outputPort;
         private readonly ICategoryReadOnlyUseCase categoryReadOnlyUseCase;
 
-        public CategoryGetUseCase(IOutputPort outputPort, ICategoryReadOnlyUseCase categoryReadOnlyUseCase)
+        public CommentGetUseCase(IOutputPort outputPort, ICategoryReadOnlyUseCase categoryReadOnlyUseCase)
         {
             this.outputPort = outputPort;
             this.categoryReadOnlyUseCase = categoryReadOnlyUseCase;
@@ -19,7 +19,7 @@ namespace Application.UseCase.Category.Get
 
         public ICategoryWriteOnlyUseCase CategoryWriteOnlyUseCase { get; }
 
-        public void Execute(CategoryGetRequest categoryGetRequest)
+        public void Execute(CommentGetRequest categoryGetRequest)
         {
             try
             {

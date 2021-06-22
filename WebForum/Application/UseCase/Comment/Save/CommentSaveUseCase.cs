@@ -1,26 +1,26 @@
-﻿using Application.Boundaries.Category;
-using Application.UseCase.Category.Save.Handler;
+﻿using Application.Boundaries.Comment;
+using Application.UseCase.Comment.Save.Handler;
 using System;
 
-namespace Application.UseCase.Category.Save
+namespace Application.UseCase.Comment.Save
 {
     public class CommentSaveUseCase : ICommentSaveUseCase
     {
         private readonly IOutputPort outputPort;
         private readonly ValidateHandler validateHandler;
 
-        public CommentSaveUseCase(IOutputPort outputPort, ValidateHandler validateHandler, SaveCommentHandler saveCategoryHandler)
+        public CommentSaveUseCase(IOutputPort outputPort, ValidateHandler validateHandler, SaveCommentHandler saveCommentHandler)
         {
             this.outputPort = outputPort;
             this.validateHandler = validateHandler;
-            this.validateHandler.SetSucessor(saveCategoryHandler);
+            this.validateHandler.SetSucessor(saveCommentHandler);
         }
         public void Execute(CommentRequest request)
         {
             try
             {
                 validateHandler.ProcessRequest(request);
-                outputPort.Standard(request.Category.Id);
+                outputPort.Standard(request.Comment.Id);
             }
             catch (Exception ex)
             {

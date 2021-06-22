@@ -1,7 +1,7 @@
 ﻿namespace Application.UseCase.Category.Get
 {
-    public interface ICategoryGetUseCase
+    public interface ICommentGetUseCase
     {
-        void Execute(CategoryGetRequest categoryGetRequest);
+        void Execute(CommentGetRequest categoryGetRequest);
     }
 }

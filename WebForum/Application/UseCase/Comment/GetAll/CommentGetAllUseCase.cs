@@ -1,25 +1,25 @@
-﻿using Application.Boundaries.Category;
+﻿using Application.Boundaries.Comment;
 using Application.Repositories.Interfaces;
 using System;
 
-namespace Application.UseCase.Category.GetAll
+namespace Application.UseCase.Comment.GetAll
 {
     public class CommentGetAllUseCase : ICommentGetAllUseCase
     {
         private readonly IOutputPort outputPort;
-        private readonly ICategoryReadOnlyUseCase categoryReadOnlyUseCase;
+        private readonly ICommentReadOnlyUseCase commentReadOnlyUseCase;
 
-        public CommentGetAllUseCase(IOutputPort outputPort, ICategoryReadOnlyUseCase categoryReadOnlyUseCase)
+        public CommentGetAllUseCase(IOutputPort outputPort, ICommentReadOnlyUseCase commentReadOnlyUseCase)
         {
             this.outputPort = outputPort;
-            this.categoryReadOnlyUseCase = categoryReadOnlyUseCase;
+            this.commentReadOnlyUseCase = commentReadOnlyUseCase;
         }
         public void Execute()
         {
             try
             {
-                var category = categoryReadOnlyUseCase.GetAll();
-                outputPort.Standard(category);
+                var comment = commentReadOnlyUseCase.GetAll();
+                outputPort.Standard(comment);
             }
             catch (Exception ex)
             {

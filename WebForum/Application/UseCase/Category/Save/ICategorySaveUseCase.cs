@@ -4,8 +4,8 @@ using System.Text;
 
 namespace Application.UseCase.Category.Save
 {
-    public interface ICategorySaveUseCase
+    public interface ICommentSaveUseCase
     {
-        void Execute(CategoryRequest request);
+        void Execute(CommentRequest request);
     }
 }

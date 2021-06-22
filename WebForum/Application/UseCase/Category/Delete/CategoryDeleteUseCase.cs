@@ -4,12 +4,12 @@ using System;
 
 namespace Application.UseCase.Category.Delete
 {
-    public class CategoryDeleteUseCase : ICategoryDeleteUseCase
+    public class CommentDeleteUseCase : ICategoryDeleteUseCase
     {
         private readonly IOutputPort output;
         private readonly ICategoryWriteOnlyUseCase categoryWriteOnlyUseCase;
 
-        public CategoryDeleteUseCase(IOutputPort output, ICategoryWriteOnlyUseCase categoryWriteOnlyUseCase)
+        public CommentDeleteUseCase(IOutputPort output, ICategoryWriteOnlyUseCase categoryWriteOnlyUseCase)
         {
             this.output = output;
             this.categoryWriteOnlyUseCase = categoryWriteOnlyUseCase;

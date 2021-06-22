@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Application.UseCase.Category.Get
+namespace Application.UseCase.Comment.Get
 {
     public class CommentGetRequest
     {
