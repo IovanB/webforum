@@ -8,9 +8,9 @@ namespace Application.Boundaries.Topic
     {
         void Standard(Guid id);
 
-        void Standard(WebForum.Domain.Entities.Topic topic);
+        void Standard(Domain.Entities.Topic topic);
 
-        void Standard(IList<WebForum.Domain.Entities.Topic> topic);
+        void Standard(IList<Domain.Entities.Topic> topic);
 
         void NotFound(string message);
 

@@ -4,12 +4,12 @@ using System;
 
 namespace Application.UseCase.Category.GetAll
 {
-    public class CommentGetAllUseCase : ICommentGetAllUseCase
+    public class CategoryGetAllUseCase : ICategoryGetAllUseCase
     {
         private readonly IOutputPort outputPort;
         private readonly ICategoryReadOnlyUseCase categoryReadOnlyUseCase;
 
-        public CommentGetAllUseCase(IOutputPort outputPort, ICategoryReadOnlyUseCase categoryReadOnlyUseCase)
+        public CategoryGetAllUseCase(IOutputPort outputPort, ICategoryReadOnlyUseCase categoryReadOnlyUseCase)
         {
             this.outputPort = outputPort;
             this.categoryReadOnlyUseCase = categoryReadOnlyUseCase;

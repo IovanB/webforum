@@ -1,5 +1,4 @@
 ﻿using AutoMapper;
-using Infrastructure.Data.Entity.Entities;
 
 namespace Infrastructure.Data.AutoMapperProfile
 {
@@ -7,11 +6,11 @@ namespace Infrastructure.Data.AutoMapperProfile
     {
         public InfraProfile()
         {
-            CreateMap<WebForum.Domain.Entities.Category, Category>().ReverseMap();
-            CreateMap<WebForum.Domain.Entities.Topic, Topic>().ReverseMap();
-            CreateMap<WebForum.Domain.Entities.Post, Post>().ReverseMap();
-            CreateMap<WebForum.Domain.Entities.Comment, Comment>().ReverseMap();
-            CreateMap<WebForum.Domain.Entities.User, User>().ReverseMap();
+            CreateMap<Domain.Entities.Category, Entity.Entities.Category>().ReverseMap();
+            CreateMap<Domain.Entities.Topic, Entity.Entities.Topic>().ReverseMap();
+            CreateMap<Domain.Entities.Post,Entity.Entities.Post>().ReverseMap();
+            CreateMap<Domain.Entities.Comment, Entity.Entities.Comment>().ReverseMap();
+            CreateMap<Domain.Entities.User, Entity.Entities.User>().ReverseMap();
         }
     }
 }

@@ -8,9 +8,9 @@ namespace Application.Boundaries.Category
     {
         void Standard(Guid id);
 
-        void Standard(WebForum.Domain.Entities.Category category);
+        void Standard(Domain.Entities.Category category);
 
-        void Standard(IList<WebForum.Domain.Entities.Category> category);
+        void Standard(IList<Domain.Entities.Category> category);
 
         void NotFound(string message);
 

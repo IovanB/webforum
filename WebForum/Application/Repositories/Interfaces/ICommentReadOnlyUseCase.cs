@@ -1,5 +1,5 @@
-﻿using WebForum.Application.Repositories;
-using WebForum.Domain.Entities;
+﻿using Application.Repositories;
+using Domain.Entities;
 
 namespace Application.Repositories.Interfaces
 {

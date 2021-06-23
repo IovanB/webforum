@@ -1,10 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace Application.UseCase.Category.GetAll
+﻿namespace Application.UseCase.Category.GetAll
 {
-    public interface ICommentGetAllUseCase
+    public interface ICategoryGetAllUseCase
     {
         void Execute();
     }

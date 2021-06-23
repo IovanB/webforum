@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace WebForum.Application.Repositories
+namespace Application.Repositories
 {
     public interface ITokenRepository
     {

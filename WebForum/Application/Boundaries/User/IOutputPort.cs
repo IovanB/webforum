@@ -7,9 +7,9 @@ namespace Application.Boundaries.User
     {
         void Standard(Guid id);
 
-        void Standard(WebForum.Domain.Entities.User user);
+        void Standard(Domain.Entities.User user);
 
-        void Standard(IList<WebForum.Domain.Entities.User> user);
+        void Standard(IList<Domain.Entities.User> user);
 
         void NotFound(string message);
 

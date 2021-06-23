@@ -8,9 +8,9 @@ namespace Application.Boundaries.Post
     {
         void Standard(Guid id);
 
-        void Standard(WebForum.Domain.Entities.Post post);
+        void Standard(Domain.Entities.Post post);
 
-        void Standard(IList<WebForum.Domain.Entities.Post> post);
+        void Standard(IList<Domain.Entities.Post> post);
 
         void NotFound(string message);
 

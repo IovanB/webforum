@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace WebForum.Application.Repositories
+namespace Application.Repositories
 {
     public interface IReadOnlyUseCase <TEntity>
     {

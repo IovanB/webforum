@@ -2,11 +2,11 @@
 {
     public class TopicSaveRequest
     {
-        public WebForum.Domain.Entities.Topic Topic { get; set; }
+        public Domain.Entities.Topic Topic { get; set; }
 
-        public TopicSaveRequest(string name, WebForum.Domain.Entities.Category category)
+        public TopicSaveRequest(string name, Domain.Entities.Category category)
         {
-            Topic = new WebForum.Domain.Entities.Topic(name, category);
+            Topic = new Domain.Entities.Topic(name, category);
         }
     }
 }

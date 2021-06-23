@@ -4,7 +4,7 @@ using System.Linq;
 using Application.Repositories.Interfaces;
 using AutoMapper;
 using Microsoft.EntityFrameworkCore;
-using WebForum.Domain.Entities;
+using Domain.Entities;
 
 namespace Infrastructure.Repository
 {

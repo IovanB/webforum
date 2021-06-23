@@ -3,8 +3,8 @@ using System;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Security.Principal;
-using WebForum.Application.Repositories;
-using WebForum.Domain.Entities;
+using Application.Repositories;
+using Domain.Entities;
 
 namespace WebForum.Application.UseCase.Token
 {

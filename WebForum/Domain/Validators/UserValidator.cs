@@ -1,9 +1,8 @@
 ﻿using FluentValidation;
 using System;
-using System.Linq;
-using WebForum.Domain.Entities;
+using Domain.Entities;
 
-namespace WebForum.Domain.Validators
+namespace Domain.Validators
 {
     public class UserValidator : AbstractValidator<User>
     {

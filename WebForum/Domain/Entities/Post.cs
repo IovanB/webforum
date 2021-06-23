@@ -1,7 +1,7 @@
 ﻿using System;
-using WebForum.Domain.Validators;
+using Domain.Validators;
 
-namespace WebForum.Domain.Entities
+namespace Domain.Entities
 {
     public class Post : Entity
     {

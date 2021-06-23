@@ -3,9 +3,9 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using WebForum.Domain.Entities;
+using Domain.Entities;
 
-namespace WebForum.Domain.Validators
+namespace Domain.Validators
 {
     public class PostValidator : AbstractValidator<Post>
     {

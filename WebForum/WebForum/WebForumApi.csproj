@@ -50,5 +50,11 @@
     <ProjectReference Include="..\Infrastructure\Infrastructure.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="UseCase\Category\Delete\" />
+    <Folder Include="UseCase\Category\Get\" />
+    <Folder Include="UseCase\Category\Update\" />
+  </ItemGroup>
+
 
 </Project>

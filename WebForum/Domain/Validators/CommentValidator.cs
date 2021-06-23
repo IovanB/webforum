@@ -1,8 +1,8 @@
 ﻿using FluentValidation;
 using System;
-using WebForum.Domain.Entities;
+using Domain.Entities;
 
-namespace WebForum.Domain.Validators
+namespace Domain.Validators
 {
     public class CommentValidator : AbstractValidator<Comment>
     {

@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace WebForum.Application.Repositories
+namespace Application.Repositories
 {
     public interface IWriteOnlyUseCase <TEntity>
     {

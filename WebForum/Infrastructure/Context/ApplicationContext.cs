@@ -2,7 +2,8 @@
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
-using WebForum.Domain.Entities;
+using Domain.Entities;
+using System.ComponentModel.DataAnnotations;
 
 namespace Infrastructure.Context
 {
@@ -42,8 +43,9 @@ namespace Infrastructure.Context
             modelBuilder.ApplyConfiguration(new PostMap());
             modelBuilder.ApplyConfiguration(new UserMap());
             modelBuilder.ApplyConfiguration(new CommentMap());
+            modelBuilder.Ignore<ValidationResult>();
 
-           base.OnModelCreating(modelBuilder);
+            base.OnModelCreating(modelBuilder);
         }
 
     }

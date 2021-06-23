@@ -3,7 +3,7 @@ using FluentValidation.Results;
 using System;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace WebForum.Domain.Entities
+namespace Domain.Entities
 {
     public class Entity
     {

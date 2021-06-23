@@ -8,9 +8,9 @@ namespace Application.Boundaries.Comment
     {
         void Standard(Guid id);
 
-        void Standard(WebForum.Domain.Entities.Comment comment);
+        void Standard(Domain.Entities.Comment comment);
 
-        void Standard(IList<WebForum.Domain.Entities.Comment> comment);
+        void Standard(IList<Domain.Entities.Comment> comment);
 
         void NotFound(string message);
 
