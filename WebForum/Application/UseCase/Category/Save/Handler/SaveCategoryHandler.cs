@@ -4,17 +4,17 @@ using System;
 
 namespace Application.UseCase.Category.Save.Handler
 {
-    public class SaveCommentHandler : Handler<CommentRequest>
+    public class SaveCategoryHandler : Handler<CategorytRequest>
     {
         private readonly ICategoryWriteOnlyUseCase categoryWriteOnlyUseCase;
 
-        public SaveCommentHandler(ICategoryWriteOnlyUseCase categoryWriteOnlyUseCase)
+        public SaveCategoryHandler(ICategoryWriteOnlyUseCase categoryWriteOnlyUseCase)
         {
             this.categoryWriteOnlyUseCase = categoryWriteOnlyUseCase;
         }
-        public override void ProcessRequest(CommentRequest request)
+        public override void ProcessRequest(CategorytRequest request)
         {
-            var req = categoryWriteOnlyUseCase.Add(request.Category);
+            var req = categoryWriteOnlyUseCase.Save(request.Category);
 
             if (req == 0)
                 throw new ArgumentException("Problem whilst adding category");

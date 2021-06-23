@@ -6,6 +6,7 @@ namespace WebForum.Application.Repositories
     {
         int Add(TEntity entity);
         int Remove(Guid id);
-        int Update(Guid id);
+        int Update(TEntity entity);
+        int Save(TEntity entity);
     }
 }

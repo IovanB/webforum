@@ -5,7 +5,7 @@ namespace WebForum.Application.Repositories
 {
     public interface IReadOnlyUseCase <TEntity>
     {
-        List<TEntity> GetAll();
+        IList<TEntity> GetAll();
         TEntity GetById(Guid id);
     }
 }

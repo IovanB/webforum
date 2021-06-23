@@ -20,7 +20,7 @@ namespace WebForum.WebForumApi.UseCase.Comment
         private readonly IUpdateCommentUseCase updateCommentUseCase;
         private readonly IGetAllCommentUseCase getAllCommentUseCase;
         private readonly IGetByIdCommentUseCase getByIdCommentUseCase;
-        private readonly IGetByIdPostUseCase getByIdPostUseCase;
+        private readonly IPostGetUseCase getByIdPostUseCase;
         private readonly IGetByIdUserUseCase getByIdUserUseCase;
 
         public CommentController(
@@ -29,7 +29,7 @@ namespace WebForum.WebForumApi.UseCase.Comment
             IUpdateCommentUseCase updateCommentUseCase,
             IGetAllCommentUseCase getAllCommentUseCase,
             IGetByIdCommentUseCase getByIdCommentUseCase,
-            IGetByIdPostUseCase getByIdPostUseCase,
+            IPostGetUseCase getByIdPostUseCase,
             IGetByIdUserUseCase getByIdUserUseCase)
         {
             this.addCommentUseCase = addCommentUseCase;

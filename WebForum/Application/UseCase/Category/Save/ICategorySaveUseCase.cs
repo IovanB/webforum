@@ -1,11 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace Application.UseCase.Category.Save
+﻿namespace Application.UseCase.Category.Save
 {
-    public interface ICommentSaveUseCase
+    public interface ICategorytSaveUseCase
     {
-        void Execute(CommentRequest request);
+        void Execute(CategorytRequest request);
     }
 }

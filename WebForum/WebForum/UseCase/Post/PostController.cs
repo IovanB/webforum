@@ -16,20 +16,20 @@ namespace WebForum.WebForumApi.UseCase.Post
     public class PostController : ControllerBase
     {
         private readonly IAddPostUseCase addPostUseCase;
-        private readonly IRemovePostUseCase removePostUseCase;
+        private readonly IPostRemoveUseCase removePostUseCase;
         private readonly IUpdatePostUseCase updatePostUseCase;
         private readonly IGetAllPostUseCase getAllPostUseCase;
-        private readonly IGetByIdPostUseCase getByIdPostUseCase;
-        private readonly IGetByIdTopicUseCase getByIdTopicUseCase;
+        private readonly IPostGetUseCase getByIdPostUseCase;
+        private readonly ITopicGetUseCase getByIdTopicUseCase;
         private readonly IGetByIdUserUseCase getByIdUserUseCase;
 
         public PostController(
             IAddPostUseCase addPostUseCase,
-            IRemovePostUseCase removePostUseCase,
+            IPostRemoveUseCase removePostUseCase,
             IUpdatePostUseCase updatePostUseCase,
             IGetAllPostUseCase getAllPostUseCase,
-            IGetByIdPostUseCase getByIdPostUseCase,
-            IGetByIdTopicUseCase getByIdTopicUseCase,
+            IPostGetUseCase getByIdPostUseCase,
+            ITopicGetUseCase getByIdTopicUseCase,
             IGetByIdUserUseCase getByIdUserUseCase)
         {
             this.addPostUseCase = addPostUseCase;

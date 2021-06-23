@@ -4,18 +4,18 @@ using System;
 
 namespace Application.UseCase.Category.Save
 {
-    public class CommentSaveUseCase : ICommentSaveUseCase
+    public class CategorySaveUseCase : ICategorytSaveUseCase
     {
         private readonly IOutputPort outputPort;
         private readonly ValidateHandler validateHandler;
 
-        public CommentSaveUseCase(IOutputPort outputPort, ValidateHandler validateHandler, SaveCommentHandler saveCategoryHandler)
+        public CategorySaveUseCase(IOutputPort outputPort, ValidateHandler validateHandler, SaveCategoryHandler saveCategoryHandler)
         {
             this.outputPort = outputPort;
             this.validateHandler = validateHandler;
             this.validateHandler.SetSucessor(saveCategoryHandler);
         }
-        public void Execute(CommentRequest request)
+        public void Execute(CategorytRequest request)
         {
             try
             {

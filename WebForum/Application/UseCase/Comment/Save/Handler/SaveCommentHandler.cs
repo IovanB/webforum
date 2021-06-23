@@ -14,7 +14,7 @@ namespace Application.UseCase.Comment.Save.Handler
         }
         public override void ProcessRequest(CommentRequest request)
         {
-            var req = commentWriteOnlyUseCase.Add(request.Comment);
+            var req = commentWriteOnlyUseCase.Save(request.Comment);
 
             if (req == 0)
                 throw new ArgumentException("Problem whilst adding comment");

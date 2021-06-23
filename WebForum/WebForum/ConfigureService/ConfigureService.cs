@@ -46,25 +46,25 @@ namespace WebForum.WebForumApi.ConfigureService
             /*TOPIC*/
 
             serviceCollection.AddScoped<IAddTopicUseCase, AddTopicUseCase>();
-            serviceCollection.AddScoped<IRemoveTopicUseCase, RemoveTopicUseCase>();
+            serviceCollection.AddScoped<ITopicRemoveUseCase, TopicRemoveUseCase>();
             serviceCollection.AddScoped<IUpdateTopicUseCase, UpdateTopicUseCase>();
             serviceCollection.AddScoped<IGetAllTopicUseCase, GetAllTopicUseCase>();
-            serviceCollection.AddScoped<IGetByIdTopicUseCase, GetByIdTopicUseCase>();
+            serviceCollection.AddScoped<ITopicGetUseCase, TopicGetUseCase>();
             serviceCollection.AddScoped<ITopicWriteOnlyUseCase, TopicRepository>();
             serviceCollection.AddScoped<ITopicReadOnlyUseCase, TopicRepository>();
 
             /*POST*/
             serviceCollection.AddScoped<IAddPostUseCase, AddPostUseCase>();
-            serviceCollection.AddScoped<IRemovePostUseCase, RemovePostUseCase>();
+            serviceCollection.AddScoped<IPostRemoveUseCase, PostRemoveUseCase>();
             serviceCollection.AddScoped<IUpdatePostUseCase, UpdatePostUseCase>();
             serviceCollection.AddScoped<IGetAllPostUseCase, GetAllPostUseCase>();
-            serviceCollection.AddScoped<IGetByIdPostUseCase, GetByIdPostUseCase>();
+            serviceCollection.AddScoped<IPostGetUseCase, GetByIdPostUseCase>();
             serviceCollection.AddScoped<IPostWriteOnlyUseCase, PostRepository>();
             serviceCollection.AddScoped<IPostReadOnlyUseCase, PostRepository>();
 
             /*USER*/
             serviceCollection.AddScoped<IAddUserUseCase, AddUserUseCase>();
-            serviceCollection.AddScoped<IRemoveUserUseCase, RemoveUserUseCase>();
+            serviceCollection.AddScoped<IUserRemoveUseCase, RemoveUserUseCase>();
             serviceCollection.AddScoped<IUpdateUserUseCase, UpdateUserUseCase>();
             serviceCollection.AddScoped<IGetAllUserUseCase, GetAllUserUseCase>();
             serviceCollection.AddScoped<IGetByIdUserUseCase, GetByIdUserUseCase>();

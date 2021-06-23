@@ -34,7 +34,6 @@ namespace WebForum.Application.UseCase.Token
                 credentialIsValid = (baseUser != null && user.Name == baseUser.Name && user.Password == baseUser.Password && user.Email == baseUser.Email 
                     && user.Birthday == baseUser.Birthday && user.CreatedAt == baseUser.CreatedAt
                     && user.UpdatedAt == baseUser.UpdatedAt && user.UpdatedAt == baseUser.UpdatedAt
-                    && user.UserType == baseUser.UserType && user.Id == baseUser.Id
                     );
             }
             if(credentialIsValid)

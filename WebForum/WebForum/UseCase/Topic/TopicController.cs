@@ -17,18 +17,18 @@ namespace WebForum.WebForumApi.UseCase.Topic
     {
         private readonly IAddTopicUseCase addTopicUseCase;
         private readonly IGetAllTopicUseCase getAllTopicUseCase;
-        private readonly IGetByIdTopicUseCase getByIdTopicUseCase;
+        private readonly ITopicGetUseCase getByIdTopicUseCase;
         private readonly IUpdateTopicUseCase updateTopicUseCase;
-        private readonly IRemoveTopicUseCase removeTopicUseCase;
+        private readonly ITopicRemoveUseCase removeTopicUseCase;
         private readonly IGetByIdCategoryUseCase getByIdCategoryUseCase;
         private readonly IGetByIdUserUseCase getByIdUserUseCase;
 
         public TopicController(
             IAddTopicUseCase addTopicUseCase,
             IGetAllTopicUseCase getAllTopicUseCase,
-            IGetByIdTopicUseCase getByIdTopicUseCase,
+            ITopicGetUseCase getByIdTopicUseCase,
             IUpdateTopicUseCase updateTopicUseCase,
-            IRemoveTopicUseCase removeTopicUseCase,
+            ITopicRemoveUseCase removeTopicUseCase,
             IGetByIdCategoryUseCase getByIdCategoryUseCase,
             IGetByIdUserUseCase getByIdUserUseCase
             )

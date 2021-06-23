@@ -16,7 +16,7 @@ namespace WebForum.WebForumApi.UseCase.User
     public class UserController : ControllerBase
     {
         private readonly IAddUserUseCase addUserUseCase;
-        private readonly IRemoveUserUseCase removeUserUseCase;
+        private readonly IUserRemoveUseCase removeUserUseCase;
         private readonly IUpdateUserUseCase updateUserUseCase;
         private readonly IGetAllUserUseCase getAllUserUseCase;
         private readonly IGetByIdUserUseCase getByIdUserUseCase;
@@ -25,7 +25,7 @@ namespace WebForum.WebForumApi.UseCase.User
 
         public UserController(
             IAddUserUseCase addUserUseCase,
-            IRemoveUserUseCase removeUserUseCase,
+            IUserRemoveUseCase removeUserUseCase,
             IUpdateUserUseCase updateUserUseCase,
             IGetAllUserUseCase getAllUserUseCase,
             IGetByIdUserUseCase getByIdUserUseCase,

@@ -29,15 +29,15 @@ namespace ForumTest.Fixed
             builder.RegisterType<CategoryRepository>().As<ICategoryReadOnlyUseCase>().InstancePerDependency();
 
             builder.RegisterType<AddTopicUseCase>().As<IAddTopicUseCase>().InstancePerDependency();
-            builder.RegisterType< RemoveTopicUseCase>().As<IRemoveTopicUseCase>().InstancePerDependency();
+            builder.RegisterType< TopicRemoveUseCase>().As<IRemoveTopicUseCase>().InstancePerDependency();
             builder.RegisterType<UpdateTopicUseCase>().As<IUpdateTopicUseCase>().InstancePerDependency();
             builder.RegisterType<GetAllTopicUseCase>().As<IGetAllTopicUseCase>().InstancePerDependency();
-            builder.RegisterType< GetByIdTopicUseCase>().As<IGetByIdTopicUseCase>().InstancePerDependency();
+            builder.RegisterType< TopicGetUseCase>().As<IGetByIdTopicUseCase>().InstancePerDependency();
             builder.RegisterType<TopicRepository>().As<ITopicWriteOnlyUseCase>().InstancePerDependency();
             builder.RegisterType<TopicRepository>().As<ITopicReadOnlyUseCase>().InstancePerDependency();
 
             builder.RegisterType<AddPostUseCase>().As<IAddPostUseCase>().InstancePerDependency();
-            builder.RegisterType<RemovePostUseCase>().As<IRemovePostUseCase>().InstancePerDependency();
+            builder.RegisterType<PostRemoveUseCase>().As<IRemovePostUseCase>().InstancePerDependency();
             builder.RegisterType< UpdatePostUseCase >().As<IUpdatePostUseCase>().InstancePerDependency();
             builder.RegisterType<GetAllPostUseCase>().As<IGetAllPostUseCase>().InstancePerDependency();
             builder.RegisterType<GetByIdPostUseCase>().As<IGetByIdPostUseCase>().InstancePerDependency();

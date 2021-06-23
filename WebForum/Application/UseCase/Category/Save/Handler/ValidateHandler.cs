@@ -3,11 +3,11 @@ using System;
 
 namespace Application.UseCase.Category.Save.Handler
 {
-    public class ValidateHandler : Handler<CategoryRequest>
+    public class ValidateHandler : Handler<CategorytRequest>
     {
-        public override void ProcessRequest(CategoryRequest request)
+        public override void ProcessRequest(CategorytRequest request)
         {
-            if (!request.Comment.IsValid)
+            if (!request.Category.IsValid)
                 throw new ArgumentException("Invalid Model");
             
             if (sucessor != null)
