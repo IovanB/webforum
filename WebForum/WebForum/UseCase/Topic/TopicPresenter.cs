@@ -1,34 +1,39 @@
 ﻿using Application.Boundaries.Topic;
+using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace WebForumApi.UseCase.Topic
 {
     public class TopicPresenter : IOutputPort
     {
+        public IActionResult ViewModel { get; private set; }
         public void Error(string message)
         {
-            throw new NotImplementedException();
+            var problemDetails = new ProblemDetails()
+            {
+                Title = "An error occurred",
+                Detail = message
+            };
+
+            ViewModel = new BadRequestObjectResult(problemDetails);
         }
 
         public void NotFound(string message)
-        {
-            throw new NotImplementedException();
-        }
+            => ViewModel = new NotFoundObjectResult(message);
 
         public void Standard(Guid id)
-        {
-            throw new NotImplementedException();
-        }
+          => ViewModel = new OkObjectResult(id);
 
         public void Standard(Domain.Entities.Topic topic)
-        {
-            throw new NotImplementedException();
-        }
+        => ViewModel = new OkObjectResult(new TopicResponse(topic.Id, topic.Category, topic.Name, topic.CreatedAt, topic.UpdatedAt));
 
         public void Standard(IList<Domain.Entities.Topic> topic)
         {
-            throw new NotImplementedException();
+            var topicResponse = new List<TopicResponse>();
+            topic.ToList().ForEach(s => topicResponse.Add(new TopicResponse(s.Id, s.Category, s.Name, s.CreatedAt, s.UpdatedAt)));
+            ViewModel = new OkObjectResult(topicResponse);
         }
     }
 }

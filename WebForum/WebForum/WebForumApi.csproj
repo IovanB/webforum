@@ -61,11 +61,6 @@
     <Folder Include="UseCase\Post\Get\" />
     <Folder Include="UseCase\Post\GetAll\" />
     <Folder Include="UseCase\Post\Update\" />
-    <Folder Include="UseCase\Topic\Add\" />
-    <Folder Include="UseCase\Topic\Delete\" />
-    <Folder Include="UseCase\Topic\Get\" />
-    <Folder Include="UseCase\Topic\GetAll\" />
-    <Folder Include="UseCase\Topic\Update\" />
     <Folder Include="UseCase\User\Add\" />
     <Folder Include="UseCase\User\Delete\" />
     <Folder Include="UseCase\User\Get\" />
