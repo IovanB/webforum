@@ -51,16 +51,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="UseCase\Comment\Add\" />
-    <Folder Include="UseCase\Comment\Delete\" />
-    <Folder Include="UseCase\Comment\Get\" />
-    <Folder Include="UseCase\Comment\GetAll\" />
-    <Folder Include="UseCase\Comment\Update\" />
-    <Folder Include="UseCase\Post\Add\" />
-    <Folder Include="UseCase\Post\Delete\" />
-    <Folder Include="UseCase\Post\Get\" />
-    <Folder Include="UseCase\Post\GetAll\" />
-    <Folder Include="UseCase\Post\Update\" />
     <Folder Include="UseCase\User\Add\" />
     <Folder Include="UseCase\User\Delete\" />
     <Folder Include="UseCase\User\Get\" />

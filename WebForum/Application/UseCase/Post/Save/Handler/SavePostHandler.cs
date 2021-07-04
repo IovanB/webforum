@@ -7,18 +7,25 @@ namespace Application.UseCase.Post.Save.Handler
     public class SavePostHandler : Handler<PostRequest>
     {
         private readonly IPostWriteOnlyUseCase postWriteOnlyUseCase;
+        private readonly IUserReadOnlyUseCase userReadOnlyUseCase;
+        private readonly ITopicReadOnlyUseCase topicReadOnlyUseCase;
 
-        public SavePostHandler(IPostWriteOnlyUseCase postWriteOnlyUseCase)
+        public SavePostHandler(IPostWriteOnlyUseCase postWriteOnlyUseCase, IUserReadOnlyUseCase userReadOnlyUseCase, ITopicReadOnlyUseCase topicReadOnlyUseCase)
         {
             this.postWriteOnlyUseCase = postWriteOnlyUseCase;
+            this.userReadOnlyUseCase = userReadOnlyUseCase;
+            this.topicReadOnlyUseCase = topicReadOnlyUseCase;
         }
         public override void ProcessRequest(PostRequest request)
         {
-            var req = postWriteOnlyUseCase.Save(request.Post);
+            var user = userReadOnlyUseCase.GetById(request.UserId);
+            var topic = topicReadOnlyUseCase.GetById(request.TopicId);
+            var postRequest = new PostRequest(request.Title, request.Content, topic, user);
+            var req = postWriteOnlyUseCase.Save(postRequest.Post);
             if (req == 0)
                 throw new ArgumentException("Problem while adding Post");
             if (sucessor != null)
-                sucessor.ProcessRequest(request);
+                sucessor.ProcessRequest(postRequest);
         }
     }
 }
