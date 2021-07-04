@@ -7,8 +7,6 @@ services:
       DATABASE_CONN: Host=db;Database=webforum;Username=postgres;Password=postgres
     ports:
       - "80"
-    depends_on:
-      - db 
     volumes:
       - ${APPDATA}/Microsoft/UserSecrets:/root/.microsoft/usersecrets:ro
     networks:
@@ -18,10 +16,13 @@ services:
     image: postgres:9.5
     container_name: db_1
     restart: always
+    environment:  
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
     ports:
       - 5452:5452
     volumes:
-        - serverdata:/var/lib/postgresql/data
+      - pgdata:/var/lib/postgresql/data
     networks:
       - webforum-network
   
@@ -40,4 +41,4 @@ services:
 networks:
   webforum-network:
 volumes:
-  serverdata:
+  pgdata:

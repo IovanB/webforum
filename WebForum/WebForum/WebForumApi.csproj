@@ -14,33 +14,45 @@
 
   <ItemGroup>
     <Compile Remove="Controllers\**" />
+    <Compile Remove="UseCase\User\Add\**" />
+    <Compile Remove="UseCase\User\Delete\**" />
+    <Compile Remove="UseCase\User\GetAll\**" />
+    <Compile Remove="UseCase\User\Get\**" />
+    <Compile Remove="UseCase\User\Update\**" />
     <Content Remove="Controllers\**" />
+    <Content Remove="UseCase\User\Add\**" />
+    <Content Remove="UseCase\User\Delete\**" />
+    <Content Remove="UseCase\User\GetAll\**" />
+    <Content Remove="UseCase\User\Get\**" />
+    <Content Remove="UseCase\User\Update\**" />
     <EmbeddedResource Remove="Controllers\**" />
+    <EmbeddedResource Remove="UseCase\User\Add\**" />
+    <EmbeddedResource Remove="UseCase\User\Delete\**" />
+    <EmbeddedResource Remove="UseCase\User\GetAll\**" />
+    <EmbeddedResource Remove="UseCase\User\Get\**" />
+    <EmbeddedResource Remove="UseCase\User\Update\**" />
     <None Remove="Controllers\**" />
+    <None Remove="UseCase\User\Add\**" />
+    <None Remove="UseCase\User\Delete\**" />
+    <None Remove="UseCase\User\GetAll\**" />
+    <None Remove="UseCase\User\Get\**" />
+    <None Remove="UseCase\User\Update\**" />
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="AutoMapper" Version="9.0.0" />
-    <PackageReference Include="FluentValidation.AspNetCore" Version="8.6.0" />
+    <PackageReference Include="Autofac.Configuration" Version="6.0.0" />
+    <PackageReference Include="Autofac.Extensions.DependencyInjection" Version="7.1.0" />
+    <PackageReference Include="AutoMapper" Version="10.1.1" />
     <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="3.1.0" />
-    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="3.1.0" />
-    <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="3.1.0">
+    <PackageReference Include="Microsoft.AspNetCore.Hosting" Version="2.2.7" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="3.1.16">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
-    <PackageReference Include="Microsoft.EntityFrameworkCore.InMemory" Version="3.1.0" />
-    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="3.1.0">
-      <PrivateAssets>all</PrivateAssets>
-      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
-    </PackageReference>
-    <PackageReference Include="Microsoft.Extensions.Hosting" Version="3.1.0" />
     <PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="3.1.0" />
     <PackageReference Include="Microsoft.OpenApi" Version="1.1.4" />
     <PackageReference Include="Microsoft.VisualStudio.Azure.Containers.Tools.Targets" Version="1.9.5" />
-    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="3.1.0" />
-    <PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="3.1.0" />
-    <PackageReference Include="NSwag.SwaggerGeneration" Version="12.3.0" />
-    <PackageReference Include="Swashbuckle.AspNetCore" Version="5.0.0-rc4" />
+    <PackageReference Include="NSwag.AspNetCore" Version="13.11.3" />
     <PackageReference Include="System.Linq" Version="4.3.0" />
     <PackageReference Include="VueCliMiddleware" Version="3.1.0" />
   </ItemGroup>
@@ -48,14 +60,6 @@
   <ItemGroup>
     <ProjectReference Include="..\Application\Application.csproj" />
     <ProjectReference Include="..\Infrastructure\Infrastructure.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="UseCase\User\Add\" />
-    <Folder Include="UseCase\User\Delete\" />
-    <Folder Include="UseCase\User\Get\" />
-    <Folder Include="UseCase\User\GetAll\" />
-    <Folder Include="UseCase\User\Update\" />
   </ItemGroup>
 
 

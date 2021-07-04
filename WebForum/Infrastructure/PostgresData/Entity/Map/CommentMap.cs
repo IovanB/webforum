@@ -11,6 +11,7 @@ namespace Infrastructure.Data.Entity.Map
             builder.ToTable("Comment", "webforum");
             builder.HasKey(k => k.Id);
             builder.HasOne(f => f.Post).WithOne(x => x.Comment).HasForeignKey<Comment>(x => x.PostId);
+            builder.HasOne(f => f.User).WithOne(x => x.Comment).HasForeignKey<Comment>(x => x.UserId);
             builder.Property(x => x.Content).IsRequired();
         }
     }

@@ -22,5 +22,9 @@ namespace Domain.Entities
             UpdatedAt = DateTime.Now;
             Validate(this,new PostValidator());
         }
+        public Post()
+        {
+
+        }
     }
 }

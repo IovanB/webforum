@@ -18,5 +18,9 @@ namespace Domain.Entities
             UpdatedAt = DateTime.Now;
             Validate(this,new TopicValidator());
         }
+        public Topic()
+        {
+
+        }
     }
 }

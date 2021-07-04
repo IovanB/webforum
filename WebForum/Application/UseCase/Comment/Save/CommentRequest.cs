@@ -11,9 +11,14 @@ namespace Application.UseCase.Comment.Save
         public Guid Id { get; private set; }
         public CommentRequest(string content, Domain.Entities.Post post, Domain.Entities.User user)
         {
-            Comment = new Domain.Entities.Comment(content, post, user);
+            Comment = new Domain.Entities.Comment(content, user, post);
         }
-        public CommentRequest(Guid id, string content, Guid postId, Guid userId)
+        public CommentRequest(string content, Guid postId, Guid userId)
+        {
+            Content = content;
+            PostId = postId;
+            UserId = userId;
+        }        public CommentRequest(Guid id, string content, Guid postId, Guid userId)
         {
             Id = id;
             Content = content;

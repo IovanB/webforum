@@ -21,5 +21,9 @@ namespace Domain.Entities
             UpdatedAt = DateTime.Now;
             Validate(this,new UserValidator());
         }
+        public User()
+        {
+
+        }
     }
 }

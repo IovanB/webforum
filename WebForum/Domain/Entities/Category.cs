@@ -13,5 +13,9 @@ namespace Domain.Entities
             Name = name;
             Validate(this,new CategoryValidator());
         }
+        public Category()
+        {
+
+        }
     }
 }
