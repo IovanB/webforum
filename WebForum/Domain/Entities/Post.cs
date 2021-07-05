@@ -9,8 +9,9 @@ namespace Domain.Entities
         public string Content { get; private set; }
         public Topic Topic { get; private set; }
         public User Author { get; private set; }
+        public DateTime CreatedAt { get; private set; }
+        public DateTime UpdatedAt { get; private set; }
 
-        
         public Post(string title, string content, Topic topicId, User user)
         {
             Id = Guid.NewGuid();

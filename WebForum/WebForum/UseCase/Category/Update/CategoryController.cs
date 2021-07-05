@@ -1,4 +1,4 @@
-﻿using Application.UseCase.Category.Save;
+﻿using Application.UseCases.Category.Save;
 using Microsoft.AspNetCore.Mvc;
 using System;
 
@@ -7,9 +7,9 @@ namespace WebForumApi.UseCase.Category.Update
     public class CategoryController : ControllerBase
     {
         private readonly CategoryPresenter presenter;
-        private readonly ICategorytSaveUseCase categorytSaveUseCase;
+        private readonly ICategorySaveUseCase categorytSaveUseCase;
 
-        public CategoryController(CategoryPresenter presenter, ICategorytSaveUseCase categorytSaveUseCase)
+        public CategoryController(CategoryPresenter presenter, ICategorySaveUseCase categorytSaveUseCase)
         {
             this.presenter = presenter;
             this.categorytSaveUseCase = categorytSaveUseCase;
@@ -21,7 +21,7 @@ namespace WebForumApi.UseCase.Category.Update
         [ProducesResponseType(typeof(ProblemDetails), 400)]
         public IActionResult UpdateCategory([FromBody] CategoryInput input)
         {
-            var request = new CategorytRequest(input.Id, input.Name);
+            var request = new CategorySaveRequest(input.Id, input.Name);
             categorytSaveUseCase.Execute(request);
             return presenter.ViewModel;
         }

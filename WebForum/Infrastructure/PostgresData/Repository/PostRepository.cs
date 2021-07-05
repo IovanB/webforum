@@ -18,12 +18,10 @@ namespace Infrastructure.Repository
         }
         public int Add(Post post)
         {
-            var model = mapper.Map<List<Data.Entity.Entities.Post>>(post);
+            var model = mapper.Map<Data.Entity.Entities.Post>(post);
             using (var applicationContext = new Context.ApplicationContext())
             {
-                applicationContext.Topic.Attach(post.Topic);
-                applicationContext.User.Attach(post.Author);
-                applicationContext.Add(model);
+                applicationContext.Post.Add(model);
                 applicationContext.SaveChanges();
             }
             return 1;
@@ -34,7 +32,7 @@ namespace Infrastructure.Repository
             var list = new List<Post>();
             using (var context = new Context.ApplicationContext())
             {
-                list = mapper.Map<List<Post>>(context.Post.Include(x => x.Topic).Include(x => x.Topic.Category).Include(y => y.Author)).ToList();
+                list = mapper.Map<List<Post>>(context.Post.Include(x => x.Topic).Include(x => x.User)).ToList();
             }
             return list;
         }
@@ -67,7 +65,7 @@ namespace Infrastructure.Repository
         {
             using (var context = new Context.ApplicationContext())
             {
-                context.Topic.Attach(post.Topic);
+                context.Post.Include(x => x.Topic);
                 context.Entry(mapper.Map<Data.Entity.Entities.Post>(post)).State = EntityState.Modified;
                 return context.SaveChanges();
             }

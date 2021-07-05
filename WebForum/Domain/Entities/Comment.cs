@@ -8,6 +8,8 @@ namespace Domain.Entities
         public string Content { get; private set; }
         public User Author { get; private set; }
         public Post Post { get; set; }
+        public DateTime CreatedAt { get; private set; }
+        public DateTime UpdatedAt { get; private set; }
         public Comment(string content, User user, Post post)
         {
             Id = Guid.NewGuid();

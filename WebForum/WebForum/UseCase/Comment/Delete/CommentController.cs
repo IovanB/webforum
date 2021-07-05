@@ -1,4 +1,4 @@
-﻿using Application.UseCase.Comment.Delete;
+﻿using Application.UseCases.Comment.Delete;
 using Microsoft.AspNetCore.Mvc;
 using System;
 

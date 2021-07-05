@@ -1,8 +1,8 @@
-﻿using Infrastructure.Data.Entity.Map;
+﻿using Infrastructure.Data.Entity.Entities;
+using Infrastructure.Data.Entity.Map;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
-using Domain.Entities;
 using System.ComponentModel.DataAnnotations;
 
 namespace Infrastructure.Context
@@ -33,10 +33,6 @@ namespace Infrastructure.Context
     
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<User>().HasData(
-                new User("Teste", "email@email.com", "testetesteteste")
-                ); 
-            
             modelBuilder.ApplyConfiguration(new CategoryMap());
             modelBuilder.ApplyConfiguration(new TopicMap());
             modelBuilder.ApplyConfiguration(new PostMap());

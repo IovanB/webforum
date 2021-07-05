@@ -18,10 +18,10 @@ namespace Infrastructure.PostgresData.Repository
         }
         public int Add(Category category)
         {
-            var model = mapper.Map<List<Data.Entity.Entities.Category>>(category);
+            var model = mapper.Map<Data.Entity.Entities.Category>(category);
             using (var context = new Context.ApplicationContext())
             {
-                context.Add(model);
+                context.Category.Add(model);
                 context.SaveChanges();
             }
             return 1;

@@ -11,6 +11,8 @@ namespace Domain.Entities
         public DateTime Birthday { get; private set; }
 
         public string Password { get; private set; }
+        public DateTime CreatedAt { get; private set; }
+        public DateTime UpdatedAt { get; private set; }
         public User(string name, string email, string password)
         {
             Id = Guid.NewGuid();

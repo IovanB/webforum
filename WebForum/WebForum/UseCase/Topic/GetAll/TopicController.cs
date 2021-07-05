@@ -1,4 +1,4 @@
-﻿using Application.UseCase.Topic.GetAll;
+﻿using Application.UseCases.Topic.GetAll;
 using Microsoft.AspNetCore.Mvc;
 using System;
 

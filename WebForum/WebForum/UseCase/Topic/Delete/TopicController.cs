@@ -1,4 +1,4 @@
-﻿using Application.UseCase.Topic.Delete;
+﻿using Application.UseCases.Topic.Delete;
 using Microsoft.AspNetCore.Mvc;
 using System;
 

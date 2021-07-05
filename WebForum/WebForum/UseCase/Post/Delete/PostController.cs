@@ -1,4 +1,4 @@
-﻿using Application.UseCase.Post.Delete;
+﻿using Application.UseCases.Post.Delete;
 using Microsoft.AspNetCore.Mvc;
 using System;
 

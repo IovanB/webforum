@@ -1,4 +1,4 @@
-﻿using Application.UseCase.Post.Save;
+﻿using Application.UseCases.Post.Save;
 using Microsoft.AspNetCore.Mvc;
 using System;
 

@@ -18,12 +18,10 @@ namespace Infrastructure.Repository
         }
         public int Add(Comment comment)
         {
-            var model = mapper.Map<List<Data.Entity.Entities.Comment>>(comment);
+            var model = mapper.Map<Data.Entity.Entities.Comment>(comment);
             using (var applicationContext = new Context.ApplicationContext())
             {
-                applicationContext.Post.Attach(comment.Post);
-                applicationContext.User.Attach(comment.Author);
-                applicationContext.Add(model);
+                applicationContext.Comment.Add(model);
                 applicationContext.SaveChanges();
             }
             return 1;
@@ -33,7 +31,7 @@ namespace Infrastructure.Repository
             var list = new List<Comment>();
             using (var context = new Context.ApplicationContext())
             {
-                list = mapper.Map<List<Comment>>(context.Comment.Include(x => x.Author).Include(x => x.Post)).ToList();
+                list = mapper.Map<List<Comment>>(context.Comment.Include(x => x.User).Include(x => x.Post)).ToList();
             }
             return list;
         }
@@ -68,8 +66,7 @@ namespace Infrastructure.Repository
         {
             using (var context = new Context.ApplicationContext())
             {
-                context.Post.Attach(comment.Post);
-                context.User.Attach(comment.Author);
+                context.Comment.Include(x => x.Post).Include(x => x.User);
                 context.Entry(mapper.Map<Data.Entity.Entities.Comment>(comment)).State = EntityState.Modified;
                 return context.SaveChanges();
             }

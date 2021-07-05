@@ -1,4 +1,4 @@
-﻿using Application.UseCase.Post.Get;
+﻿using Application.UseCases.Post.Get;
 using Microsoft.AspNetCore.Mvc;
 using System;
 

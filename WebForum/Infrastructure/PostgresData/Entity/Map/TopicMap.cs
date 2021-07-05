@@ -10,7 +10,7 @@ namespace Infrastructure.Data.Entity.Map
         {
             builder.ToTable("Topic", "webforum");
             builder.HasKey(k => k.Id);
-            builder.HasOne(x => x.Category).WithOne(x => x.Topic).HasForeignKey<Topic>(s => s.CategoryId);
+            builder.HasOne(x => x.Category).WithOne().HasForeignKey<Topic>(s => s.CategoryId);
         }
     }
 }

@@ -1,4 +1,4 @@
-﻿using Application.UseCase.Category.GetAll;
+﻿using Application.UseCases.Category.GetAll;
 using Microsoft.AspNetCore.Mvc;
 using System;
 

@@ -5,7 +5,6 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.AspNetCore.Hosting;
 using System;
-using VueCliMiddleware;
 using Domain.Entities;
 using NSwag;
 using Microsoft.Extensions.Options;
@@ -14,20 +13,17 @@ using Microsoft.AspNetCore.Mvc;
 using Autofac;
 using Autofac.Configuration;
 using System.Linq;
-using Infrastructure.Modules;
-using WebForumApi.Modules;
-using Autofac.Extensions.DependencyInjection;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Rewrite;
+using Autofac.Extensions.DependencyInjection;
+using Infrastructure.Modules;
+using WebForumApi.Modules;
 using WebForumApi.DependencyInjection;
-using Application.UseCase.Category.Save;
-using Application.Repositories.Interfaces;
-using Infrastructure.PostgresData.Repository;
+using Microsoft.Extensions.Localization;
 
 [assembly: ApiConventionType(typeof(ApiConventions))]
 namespace WebForum
 {
-
     public class Startup
     {
         public Startup(IConfiguration configuration)
@@ -35,12 +31,17 @@ namespace WebForum
             Configuration = configuration;
         }
         public IConfiguration Configuration { get; }
+        public ILifetimeScope AutofacContainer { get; private set; }
+
         public void ConfigureContainer(ContainerBuilder builder)
         {
             builder.RegisterModule(new ConfigurationModule(Configuration));
+            builder.AddAutofacRegistration();
         }
-        public IServiceProvider ConfigureServices(IServiceCollection services)
+
+        public void ConfigureServices(IServiceCollection services)
         {
+            // services.AddAutofac();
             services.AddControllers();
 
             services.AddSwaggerDocument(document =>
@@ -109,20 +110,16 @@ namespace WebForum
                     .AddAuthenticationSchemes(JwtBearerDefaults.AuthenticationScheme‌​)
                     .RequireAuthenticatedUser().Build());
             });
-
-            var builder = new ContainerBuilder();
-            builder.RegisterModule<ApplicationModule>();
-            builder.RegisterModule<Infrastructure.PostgresData.Module>();
-            builder.RegisterModule<InfrastructureDefaultModule>();
-            builder.RegisterModule<WebApiModule>();
-            builder.Populate(services);
-
-            var container = builder.Build();
-            return new AutofacServiceProvider(container);
+           
         }
 
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
         {
+            var serviceProvider = app.ApplicationServices;
+            var resouces = serviceProvider.GetService<IStringLocalizer<ReturnMessages>>();
+
+            this.AutofacContainer = app.ApplicationServices.GetAutofacRoot();
+
             app.UseOpenApi(config =>
             {
                 config.PostProcess = (document, request) =>

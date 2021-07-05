@@ -1,4 +1,4 @@
-﻿using Application.UseCase.Comment.GetAll;
+﻿using Application.UseCases.Comment.GetAll;
 using Microsoft.AspNetCore.Mvc;
 using System;
 

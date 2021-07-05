@@ -1,4 +1,4 @@
-﻿using Application.UseCase.Comment.Save;
+﻿using Application.UseCases.Comment.Save;
 using Microsoft.AspNetCore.Mvc;
 using System;
 

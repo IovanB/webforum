@@ -18,13 +18,11 @@ namespace Infrastructure.Repository
         }
         public int Add(Topic topic)
         {
-            var model = mapper.Map<List<Data.Entity.Entities.Topic>>(topic);
+            var model = mapper.Map<Data.Entity.Entities.Topic>(topic);
             using (var context = new Context.ApplicationContext())
             {
-                context.Category.Attach(topic.Category);
-
-                context.Add(topic);
-                 context.SaveChanges();
+                context.Topic.Add(model);
+                context.SaveChanges();
             }
             return 1;
         }

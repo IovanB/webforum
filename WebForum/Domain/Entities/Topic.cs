@@ -8,7 +8,8 @@ namespace Domain.Entities
     {
         public string Name{ get; private set; }
         public Category Category { get; set; }
-
+        public DateTime CreatedAt { get; private set; }
+        public DateTime UpdatedAt { get; private set; }
         public Topic(string name, Category category)
         {
             Id = Guid.NewGuid();

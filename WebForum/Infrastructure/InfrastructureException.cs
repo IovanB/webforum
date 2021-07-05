@@ -4,7 +4,7 @@ namespace Infrastructure
 {
     public class InfrastructureException: Exception
     {
-        internal InfrastructureException(string businessMessage)
+        public InfrastructureException(string businessMessage)
             :base(businessMessage)
         {
 

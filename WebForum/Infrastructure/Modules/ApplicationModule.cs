@@ -1,4 +1,5 @@
 ﻿using Autofac;
+using System;
 
 namespace Infrastructure.Modules
 {
@@ -9,6 +10,8 @@ namespace Infrastructure.Modules
             builder.RegisterAssemblyTypes(typeof(Application.ApplicationException).Assembly)
                 .AsImplementedInterfaces()
                 .InstancePerLifetimeScope();
+            
+            builder.RegisterAssemblyTypes(AppDomain.CurrentDomain.GetAssemblies()).Where(w => (w.Namespace ?? string.Empty).Contains("UseCases")).AsImplementedInterfaces().AsSelf().InstancePerLifetimeScope();
         }
     }
 }

@@ -1,4 +1,4 @@
-﻿using Application.UseCase.Topic.Save;
+﻿using Application.UseCases.Topic.Save;
 using Microsoft.AspNetCore.Mvc;
 using System;
 
