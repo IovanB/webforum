@@ -6,7 +6,7 @@ namespace WebForumApi.UseCase.Category.Get
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class CategoryController : Controller
+    public class CategoryController : ControllerBase
     {
         private readonly CategoryPresenter presenter;
         private readonly ICategoryGetUseCase categoryGetUseCase;

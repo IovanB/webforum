@@ -6,7 +6,7 @@ namespace WebForumApi.UseCase.Comment.GetAll
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class CommentController : Controller
+    public class CommentController : ControllerBase
     {
         private readonly CommentPresenter presenter;
         private readonly ICommentGetAllUseCase commentGetAllUseCase;

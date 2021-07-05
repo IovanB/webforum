@@ -8,7 +8,7 @@ namespace Infrastructure.Modules
         {
             builder.RegisterAssemblyTypes(typeof(InfrastructureException).Assembly)
                 .AsImplementedInterfaces()
-                .AsSelf().InstancePerLifetimeScope();
+                .InstancePerLifetimeScope();
         }
     }
 }

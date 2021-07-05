@@ -6,7 +6,7 @@ namespace WebForumApi.UseCase.Post.Get
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class PostController : Controller
+    public class PostController : ControllerBase
     {
         private readonly PostPresenter presenter;
         private readonly IPostGetUseCase postGetUseCase;

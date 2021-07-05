@@ -6,7 +6,7 @@ namespace WebForumApi.UseCase.Post.Delete
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class PostController : Controller
+    public class PostController : ControllerBase
     {
         private readonly PostPresenter presenter;
         private readonly IPostRemoveUseCase postRemoveUseCase;

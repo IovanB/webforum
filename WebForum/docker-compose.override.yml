@@ -6,7 +6,9 @@ services:
       ASPNETCORE_ENVIRONMENT: Development
       DATABASE_CONN: Host=db;Database=webforum;Username=postgres;Password=postgres
     ports:
-      - "80"
+      - "8080:80"
+    depends_on:
+      - db
     volumes:
       - ${APPDATA}/Microsoft/UserSecrets:/root/.microsoft/usersecrets:ro
     networks:
@@ -14,7 +16,6 @@ services:
   
   db:
     image: postgres:9.5
-    container_name: db_1
     restart: always
     environment:  
       - POSTGRES_USER=postgres

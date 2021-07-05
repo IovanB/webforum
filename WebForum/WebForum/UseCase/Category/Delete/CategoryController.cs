@@ -6,7 +6,7 @@ namespace WebForumApi.UseCase.Category.Delete
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class CategoryController : Controller
+    public class CategoryController : ControllerBase
     {
         private readonly CategoryPresenter presenter;
         private readonly ICategoryDeleteUseCase categoryDeleteUseCase;

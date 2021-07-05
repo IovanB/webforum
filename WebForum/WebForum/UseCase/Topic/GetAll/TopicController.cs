@@ -6,7 +6,7 @@ namespace WebForumApi.UseCase.Topic.GetAll
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class TopicController : Controller
+    public class TopicController : ControllerBase
     {
         private readonly TopicPresenter presenter;
         private readonly ITopicGetAllUseCase topicGetAllUseCase;

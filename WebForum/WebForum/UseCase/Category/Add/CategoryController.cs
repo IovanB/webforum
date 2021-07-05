@@ -6,7 +6,7 @@ namespace WebForumApi.UseCase.Category.Add
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class CategoryController : Controller
+    public class CategoryController : ControllerBase
     {
         private readonly ICategorytSaveUseCase categorytSaveUseCase;
         private readonly CategoryPresenter categoryPresenter;
@@ -16,6 +16,7 @@ namespace WebForumApi.UseCase.Category.Add
             this.categorytSaveUseCase = categorytSaveUseCase;
             this.categoryPresenter = categoryPresenter;
         }
+
         [HttpPost]
         [Route("CreateCategory")]
         [ProducesResponseType(typeof(Guid), 200)]

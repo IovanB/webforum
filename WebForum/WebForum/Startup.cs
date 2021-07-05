@@ -19,6 +19,10 @@ using WebForumApi.Modules;
 using Autofac.Extensions.DependencyInjection;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Rewrite;
+using WebForumApi.DependencyInjection;
+using Application.UseCase.Category.Save;
+using Application.Repositories.Interfaces;
+using Infrastructure.PostgresData.Repository;
 
 [assembly: ApiConventionType(typeof(ApiConventions))]
 namespace WebForum
@@ -26,13 +30,11 @@ namespace WebForum
 
     public class Startup
     {
-        readonly string MyAllowSpecificOrigins = "_myAllowSpecificOrigins";
-        public IConfiguration Configuration { get; }
-
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
         }
+        public IConfiguration Configuration { get; }
         public void ConfigureContainer(ContainerBuilder builder)
         {
             builder.RegisterModule(new ConfigurationModule(Configuration));
@@ -108,22 +110,6 @@ namespace WebForum
                     .RequireAuthenticatedUser().Build());
             });
 
-            //CORS
-
-            services.AddCors(options =>
-            {
-                options.AddPolicy(MyAllowSpecificOrigins,
-                builder =>
-                {
-                    builder.WithOrigins("http://localhost:8080");
-                });
-            });
-
-            services.AddSpaStaticFiles(configuration =>
-            {
-                configuration.RootPath = "forumvue";
-            });
-
             var builder = new ContainerBuilder();
             builder.RegisterModule<ApplicationModule>();
             builder.RegisterModule<Infrastructure.PostgresData.Module>();
@@ -137,8 +123,6 @@ namespace WebForum
 
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
         {
-            app.UseCors(MyAllowSpecificOrigins);
-
             app.UseOpenApi(config =>
             {
                 config.PostProcess = (document, request) =>
@@ -157,27 +141,12 @@ namespace WebForum
 
             app.UseRouting();
             
-            app.UseSpaStaticFiles();
-            
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();
             });
-
-            app.UseSpa(spa =>
-            {
-                if (env.IsDevelopment())
-                    spa.Options.SourcePath = "forumvue";
-                else
-                    spa.Options.SourcePath = "dist";
-                if (env.IsDevelopment())
-                {
-                    spa.UseVueCli(npmScript: "serve");
-                }
-            });
-
         }
         private string ExtractHost(HttpRequest request) =>
           request.Headers.ContainsKey("X-Forwarded-Host") ?

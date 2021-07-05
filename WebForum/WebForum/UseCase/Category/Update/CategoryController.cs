@@ -4,7 +4,7 @@ using System;
 
 namespace WebForumApi.UseCase.Category.Update
 {
-    public class CategoryController : Controller
+    public class CategoryController : ControllerBase
     {
         private readonly CategoryPresenter presenter;
         private readonly ICategorytSaveUseCase categorytSaveUseCase;

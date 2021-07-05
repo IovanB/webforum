@@ -17,7 +17,6 @@ namespace Infrastructure.Context
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-
             if (Environment.GetEnvironmentVariable("DATABASE_CONN") != null)
             {
                 optionsBuilder.UseNpgsql(Environment.GetEnvironmentVariable("DATABASE_CONN"), npgsqlOptionsAction: options =>
