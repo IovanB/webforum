@@ -3,17 +3,15 @@ using System;
 using Infrastructure.Context;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
-using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
-namespace Infrastructure.PostgresData.Entities.Migrations
+namespace Infrastructure.Migrations
 {
     [DbContext(typeof(ApplicationContext))]
-    [Migration("20210704181457_InitialCreate")]
-    partial class InitialCreate
+    partial class ApplicationContextModelSnapshot : ModelSnapshot
     {
-        protected override void BuildTargetModel(ModelBuilder modelBuilder)
+        protected override void BuildModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -21,168 +19,25 @@ namespace Infrastructure.PostgresData.Entities.Migrations
                 .HasAnnotation("ProductVersion", "3.1.16")
                 .HasAnnotation("Relational:MaxIdentifierLength", 63);
 
-            modelBuilder.Entity("Domain.Entities.Category", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uuid");
-
-                    b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("timestamp without time zone");
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasColumnType("text");
-
-                    b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("timestamp without time zone");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Category","webforum");
-                });
-
-            modelBuilder.Entity("Domain.Entities.Comment", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uuid");
-
-                    b.Property<Guid?>("AuthorId")
-                        .HasColumnType("uuid");
-
-                    b.Property<string>("Content")
-                        .HasColumnType("text");
-
-                    b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("timestamp without time zone");
-
-                    b.Property<Guid?>("PostId")
-                        .HasColumnType("uuid");
-
-                    b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("timestamp without time zone");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("AuthorId");
-
-                    b.HasIndex("PostId");
-
-                    b.ToTable("Comment");
-                });
-
-            modelBuilder.Entity("Domain.Entities.Post", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uuid");
-
-                    b.Property<Guid?>("AuthorId")
-                        .HasColumnType("uuid");
-
-                    b.Property<string>("Content")
-                        .HasColumnType("text");
-
-                    b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("timestamp without time zone");
-
-                    b.Property<string>("Title")
-                        .HasColumnType("text");
-
-                    b.Property<Guid?>("TopicId")
-                        .HasColumnType("uuid");
-
-                    b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("timestamp without time zone");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("AuthorId");
-
-                    b.HasIndex("TopicId");
-
-                    b.ToTable("Post");
-                });
-
-            modelBuilder.Entity("Domain.Entities.Topic", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uuid");
-
-                    b.Property<Guid?>("CategoryId")
-                        .HasColumnType("uuid");
-
-                    b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("timestamp without time zone");
-
-                    b.Property<string>("Name")
-                        .HasColumnType("text");
-
-                    b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("timestamp without time zone");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("CategoryId");
-
-                    b.ToTable("Topic");
-                });
-
-            modelBuilder.Entity("Domain.Entities.User", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uuid");
-
-                    b.Property<DateTime>("Birthday")
-                        .HasColumnType("timestamp without time zone");
-
-                    b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("timestamp without time zone");
-
-                    b.Property<string>("Email")
-                        .HasColumnType("text");
-
-                    b.Property<string>("Name")
-                        .HasColumnType("text");
-
-                    b.Property<string>("Password")
-                        .HasColumnType("text");
-
-                    b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("timestamp without time zone");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("User");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = new Guid("a02376c6-d7f4-47bf-b725-c6ff7a24746b"),
-                            Birthday = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            CreatedAt = new DateTime(2021, 7, 4, 15, 14, 52, 358, DateTimeKind.Local).AddTicks(3833),
-                            Email = "email@email.com",
-                            Name = "Teste",
-                            Password = "testetesteteste",
-                            UpdatedAt = new DateTime(2021, 7, 4, 15, 14, 52, 359, DateTimeKind.Local).AddTicks(2908)
-                        });
-                });
-
             modelBuilder.Entity("Infrastructure.Data.Entity.Entities.Category", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uuid");
 
+                    b.Property<DateTime?>("CreatedAt")
+                        .HasColumnType("timestamp without time zone");
+
                     b.Property<string>("Name")
+                        .IsRequired()
                         .HasColumnType("text");
+
+                    b.Property<DateTime?>("UpdatedAt")
+                        .HasColumnType("timestamp without time zone");
 
                     b.HasKey("Id");
 
-                    b.ToTable("Category");
+                    b.ToTable("Category","webforum");
                 });
 
             modelBuilder.Entity("Infrastructure.Data.Entity.Entities.Comment", b =>
@@ -210,8 +65,7 @@ namespace Infrastructure.PostgresData.Entities.Migrations
                     b.HasKey("Id");
 
                     b.HasIndex("PostId")
-                        .IsUnique()
-                        .HasName("IX_Comment_PostId1");
+                        .IsUnique();
 
                     b.HasIndex("UserId")
                         .IsUnique();
@@ -242,11 +96,15 @@ namespace Infrastructure.PostgresData.Entities.Migrations
                     b.Property<DateTime>("UpdatedAt")
                         .HasColumnType("timestamp without time zone");
 
+                    b.Property<Guid>("UserId")
+                        .HasColumnType("uuid");
+
                     b.HasKey("Id");
 
                     b.HasIndex("TopicId")
-                        .IsUnique()
-                        .HasName("IX_Post_TopicId1");
+                        .IsUnique();
+
+                    b.HasIndex("UserId");
 
                     b.ToTable("Post","webforum");
                 });
@@ -272,8 +130,7 @@ namespace Infrastructure.PostgresData.Entities.Migrations
                     b.HasKey("Id");
 
                     b.HasIndex("CategoryId")
-                        .IsUnique()
-                        .HasName("IX_Topic_CategoryId1");
+                        .IsUnique();
 
                     b.ToTable("Topic","webforum");
                 });
@@ -312,35 +169,6 @@ namespace Infrastructure.PostgresData.Entities.Migrations
                     b.ToTable("User","webforum");
                 });
 
-            modelBuilder.Entity("Domain.Entities.Comment", b =>
-                {
-                    b.HasOne("Domain.Entities.User", "Author")
-                        .WithMany()
-                        .HasForeignKey("AuthorId");
-
-                    b.HasOne("Domain.Entities.Post", "Post")
-                        .WithMany()
-                        .HasForeignKey("PostId");
-                });
-
-            modelBuilder.Entity("Domain.Entities.Post", b =>
-                {
-                    b.HasOne("Domain.Entities.User", "Author")
-                        .WithMany()
-                        .HasForeignKey("AuthorId");
-
-                    b.HasOne("Domain.Entities.Topic", "Topic")
-                        .WithMany()
-                        .HasForeignKey("TopicId");
-                });
-
-            modelBuilder.Entity("Domain.Entities.Topic", b =>
-                {
-                    b.HasOne("Domain.Entities.Category", "Category")
-                        .WithMany()
-                        .HasForeignKey("CategoryId");
-                });
-
             modelBuilder.Entity("Infrastructure.Data.Entity.Entities.Comment", b =>
                 {
                     b.HasOne("Infrastructure.Data.Entity.Entities.Post", "Post")
@@ -363,12 +191,18 @@ namespace Infrastructure.PostgresData.Entities.Migrations
                         .HasForeignKey("Infrastructure.Data.Entity.Entities.Post", "TopicId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+
+                    b.HasOne("Infrastructure.Data.Entity.Entities.User", "User")
+                        .WithMany()
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 
             modelBuilder.Entity("Infrastructure.Data.Entity.Entities.Topic", b =>
                 {
                     b.HasOne("Infrastructure.Data.Entity.Entities.Category", "Category")
-                        .WithOne("Topic")
+                        .WithOne()
                         .HasForeignKey("Infrastructure.Data.Entity.Entities.Topic", "CategoryId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();

@@ -2,6 +2,7 @@
 using AutoMapper;
 using AutoMapper.Extensions.ExpressionMapping;
 using Infrastructure.Context;
+using Infrastructure.Data.AutoMapperProfile;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -24,9 +25,9 @@ namespace Infrastructure.Modules
 
             builder.Register(c => new MapperConfiguration(cfg =>
             {
-                foreach (var profile in c.Resolve<IEnumerable<Profile>>())
+                foreach (var profile in c.Resolve<IEnumerable<InfraProfile>>())
                     cfg.AddProfile(profile);
-
+                    //cfg.CreateMap<Data.Entity.Entities.Category, Domain.Entities.Category>().ReverseMap();
                 cfg.AddExpressionMapping();
             })).AsSelf().SingleInstance();
 

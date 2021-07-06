@@ -9,7 +9,7 @@ namespace Application.UseCases.Category.Save
         public Domain.Entities.Category Category { get; private set; }
         public CategorySaveRequest(string name)
         {
-            Category = new Domain.Entities.Category(Guid.NewGuid(), name);
+            Category = new Domain.Entities.Category(Guid.NewGuid(), name, DateTime.UtcNow, DateTime.UtcNow);
         }
 
         public CategorySaveRequest(Guid id, string name)

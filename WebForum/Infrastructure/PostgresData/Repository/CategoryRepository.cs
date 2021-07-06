@@ -5,6 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using Domain.Entities;
+using Infrastructure.Context;
 
 namespace Infrastructure.PostgresData.Repository
 {
@@ -19,7 +20,7 @@ namespace Infrastructure.PostgresData.Repository
         public int Add(Category category)
         {
             var model = mapper.Map<Data.Entity.Entities.Category>(category);
-            using (var context = new Context.ApplicationContext())
+            using (ApplicationContext context = new ApplicationContext())
             {
                 context.Category.Add(model);
                 context.SaveChanges();
