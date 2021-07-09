@@ -4,7 +4,7 @@ services:
   webforum.webforumapi:
     environment:
       ASPNETCORE_ENVIRONMENT: Development
-      DATABASE_CONN: Server=db;Database=DBapi;User=sa;Password=sql_server1;
+      DATABASE_CONN: Host=db;Database=webforum;Username=postgres;Password=postgres
     ports:
       - "80"
     depends_on:
@@ -15,15 +15,31 @@ services:
       - webforum-network
   
   db:
-    image: mcr.microsoft.com/mssql/server
-    container_name: db_1
-    environment:
-      SA_PASSWORD: "sql_server1"
-      ACCEPT_EULA: "Y"
+    image: postgres:9.5
+    restart: always
+    environment:  
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
     ports:
-      - "1433:1433"
+      - 5452:5452
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    networks:
+      - webforum-network
+  
+  pg-admin:
+    image: dpage/pgadmin4
+    environment:
+      PGADMIN_DEFAULT_EMAIL: "api@api.com"
+      PGADMIN_DEFAULT_PASSWORD: "postgres"
+    ports:
+      - "16543:80"
+    depends_on:
+      - db
     networks:
       - webforum-network
   
 networks:
   webforum-network:
+volumes:
+  pgdata:

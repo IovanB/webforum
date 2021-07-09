@@ -15,22 +15,11 @@ namespace WebForum.Infrastructure.Context
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-           /* optionsBuilder.UseSqlServer("Server=db;Database=DBapi;User=sa;Password=sql_server1;", sqlServerOptionsAction: option =>
-            {
-                option.EnableRetryOnFailure(2, TimeSpan.FromSeconds(5), new List<int>());
-                option.MigrationsHistoryTable("_MigrationHistory", "DBapi");
-            });
-*/
-            /* optionsBuilder.UseNpgsql("Host=db;Database=postgres;Username=postgres;Password=postgres", npgsqlOptionsAction: options =>
-             {
-                 options.EnableRetryOnFailure(2, TimeSpan.FromSeconds(5), new List<string>());
-                 options.MigrationsHistoryTable("_MigrationHistory", "postgres");
-             });*/
             if (Environment.GetEnvironmentVariable("DATABASE_CONN") != null)
             {
-                optionsBuilder.UseSqlServer(Environment.GetEnvironmentVariable("DATABASE_CONN"), sqlServerOptionsAction: options =>
+                optionsBuilder.UseNpgsql(Environment.GetEnvironmentVariable("DATABASE_CONN"), npgsqlOptionsAction: options =>
                 {
-                    options.EnableRetryOnFailure(2, TimeSpan.FromSeconds(5), new List<int>());
+                    options.EnableRetryOnFailure(2, TimeSpan.FromSeconds(5), new List<string>());
                     options.MigrationsHistoryTable("_MigrationHistory", "postgres");
                 });
             }
@@ -68,7 +57,7 @@ namespace WebForum.Infrastructure.Context
  *//*         modelBuilder.Entity<UserType>().HasData(
                 new UserType("Admin"));*/
 
-           base.OnModelCreating(modelBuilder);
+            base.OnModelCreating(modelBuilder);
         }
 
     }
