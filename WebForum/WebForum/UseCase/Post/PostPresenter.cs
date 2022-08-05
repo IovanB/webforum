@@ -28,12 +28,12 @@ namespace WebForumApi.UseCase.Post
           => ViewModel = new OkObjectResult(id);
 
         public void Standard(Domain.Entities.Post post)
-            => ViewModel = new OkObjectResult(new PostResponse(post.Id, post.Author, post.Topic, post.Title, post.Content, post.CreatedAt, post.UpdatedAt));
+            => ViewModel = new OkObjectResult(new PostResponse(post.Id, post.UserId, post.TopicId, post.Title, post.Content, post.CreatedAt, post.UpdatedAt));
 
         public void Standard(IList<Domain.Entities.Post> post)
         {
             var postResponse = new List<PostResponse>();
-            post.ToList().ForEach(s => postResponse.Add(new PostResponse(s.Id, s.Author, s.Topic, s.Title, s.Content, s.CreatedAt, s.UpdatedAt)));
+            post.ToList().ForEach(s => postResponse.Add(new PostResponse(s.Id, s.UserId, s.TopicId, s.Title, s.Content, s.CreatedAt, s.UpdatedAt)));
             ViewModel = new OkObjectResult(postResponse);
         }
     }

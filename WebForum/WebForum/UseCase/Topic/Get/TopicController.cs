@@ -18,7 +18,7 @@ namespace WebForumApi.UseCase.Topic.Get
         }
         [HttpPost]
         [Route("GetTopicById")]
-        [ProducesResponseType(typeof(Guid), 200)]
+        [ProducesResponseType(typeof(TopicResponse), 200)]
         [ProducesResponseType(typeof(ProblemDetails), 400)]
         public IActionResult GetTopicById([FromBody] TopicInput input)
         {

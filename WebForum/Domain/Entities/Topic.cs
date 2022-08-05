@@ -6,17 +6,22 @@ namespace Domain.Entities
 {
     public class Topic : Entity
     {
+        //private DateTime? createdAt;
+
         public string Name{ get; private set; }
-        public Category Category { get; set; }
-        public DateTime CreatedAt { get; private set; }
-        public DateTime UpdatedAt { get; private set; }
-        public Topic(string name, Category category)
+        public Guid CategoryId { get; private set; }
+        public DateTime CreatedAt { get;  set; }
+        //public DateTime? CreatedAt
+        //{
+        //    get { return createdAt; }
+        //    set { createdAt = value == null ? DateTime.UtcNow : value; }
+        //}
+        public DateTime UpdatedAt { get; set; }
+        public Topic(Guid id,string name, Guid categoryId)
         {
-            Id = Guid.NewGuid();
+            Id = id;
             Name = name;
-            Category = category;
-            CreatedAt = DateTime.Now;
-            UpdatedAt = DateTime.Now;
+            CategoryId = categoryId;
             Validate(this,new TopicValidator());
         }
         public Topic()

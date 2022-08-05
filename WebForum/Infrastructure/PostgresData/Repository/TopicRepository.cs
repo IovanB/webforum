@@ -18,6 +18,9 @@ namespace Infrastructure.Repository
         }
         public int Add(Topic topic)
         {
+            topic.CreatedAt = DateTime.UtcNow;
+            topic.UpdatedAt = DateTime.UtcNow;
+
             var model = mapper.Map<Data.Entity.Entities.Topic>(topic);
             using (var context = new Context.ApplicationContext())
             {
@@ -43,7 +46,7 @@ namespace Infrastructure.Repository
 
             using (var context = new Context.ApplicationContext())
             {
-                return mapper.Map<Topic>(context.Topic.FirstOrDefault(x => x.Id == id));
+               return mapper.Map<Topic>(context.Topic.FirstOrDefault(x => x.Id == id && x.CreatedAt != null));
             }
         }
 
@@ -67,6 +70,7 @@ namespace Infrastructure.Repository
 
         public int Update(Topic topic)
         {
+            topic.UpdatedAt = DateTime.UtcNow;
             using (var context = new Context.ApplicationContext())
             {
                 context.Entry(mapper.Map<Data.Entity.Entities.Topic>(topic)).State = EntityState.Modified;

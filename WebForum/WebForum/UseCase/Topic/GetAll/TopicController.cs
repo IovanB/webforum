@@ -1,6 +1,7 @@
 ﻿using Application.UseCases.Topic.GetAll;
 using Microsoft.AspNetCore.Mvc;
 using System;
+using System.Collections.Generic;
 
 namespace WebForumApi.UseCase.Topic.GetAll
 {
@@ -19,7 +20,7 @@ namespace WebForumApi.UseCase.Topic.GetAll
 
         [HttpPost]
         [Route("GetAllTopic")]
-        [ProducesResponseType(typeof(Guid), 200)]
+        [ProducesResponseType(typeof(List<TopicResponse>), 200)]
         [ProducesResponseType(typeof(ProblemDetails), 400)]
         public IActionResult GetAllTopic()
         {

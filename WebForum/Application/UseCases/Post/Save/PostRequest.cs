@@ -10,16 +10,9 @@ namespace Application.UseCases.Post.Save
         public string Content { get; set; }
         public Guid UserId { get; set; }
         public Guid TopicId { get; set; }
-        public PostRequest(string title, string content, Domain.Entities.Topic topic , Domain.Entities.User user)
+        public PostRequest(string title, string content, Guid topicId, Guid userId)
         {
-            Post = new Domain.Entities.Post(title, content, topic, user);
-        }
-        public PostRequest(string title, string content, Guid topic , Guid user)
-        {
-            Title = title;
-            Content = content;
-            UserId = user;
-            TopicId = topic;
+            Post = new Domain.Entities.Post(title, content, topicId, userId);
         }
         public PostRequest(string title, string content)
         {

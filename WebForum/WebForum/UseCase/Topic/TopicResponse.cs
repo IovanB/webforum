@@ -1,18 +1,19 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace WebForumApi.UseCase.Topic
 {
     public class TopicResponse
     {
-        public Guid id { get; set; }
-        public Domain.Entities.Category Category { get; set; }
+        public Guid Id { get; set; }
+        public Guid CategoryId { get; set; }
         public string Name { get; set; }
-        public DateTime CreatedAt { get; set; }
+        public DateTime? CreatedAt { get; set; }
         public DateTime UpdatedAt { get; set; }
-        public TopicResponse(Guid id, Domain.Entities.Category category, string name, DateTime createdAt, DateTime updatedAt)
+        public TopicResponse(Guid id, Guid categoryId, string name, DateTime? createdAt, DateTime updatedAt)
         {
-            this.id = id;
-            Category = category;
+            Id = id;
+            CategoryId = categoryId;
             Name = name;
             CreatedAt = createdAt;
             UpdatedAt = updatedAt;

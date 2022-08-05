@@ -23,7 +23,7 @@ namespace WebForumApi.UseCase.Post.Add
         [ProducesResponseType(typeof(ProblemDetails), 400)]
         public IActionResult CreatePost([FromBody] PostInput input)
         {
-            postSaveUseCase.Execute(new PostRequest(input.Title, input.Content, input.TopicId, input.AuthorId));
+            postSaveUseCase.Execute(new PostRequest(input.Title, input.Content, input.TopicId, input.UserId));
 
             return presenter.ViewModel;
         }

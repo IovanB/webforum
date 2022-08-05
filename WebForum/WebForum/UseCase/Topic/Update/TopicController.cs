@@ -18,11 +18,11 @@ namespace WebForumApi.UseCase.Topic.Update
         }
         [HttpPut]
         [Route("UpdateTopic")]
-        [ProducesResponseType(typeof(Guid), 200)]
+        [ProducesResponseType(typeof(TopicResponse), 200)]
         [ProducesResponseType(typeof(ProblemDetails), 400)]
         public IActionResult UpdateTopic([FromBody]TopicInput input)
         {
-            topicSaveUseCase.Execute(new TopicSaveRequest(input.Id, input.Name));
+            topicSaveUseCase.Execute(new TopicSaveRequest(input.Id, input.Name, input.CategoryId));
 
             return presenter.ViewModel;
         }

@@ -9,7 +9,7 @@ namespace Application.UseCases.Topic.Save
         private readonly IOutputPort output;
         private readonly ValidateSaveRequest validateSaveRequest;
 
-        public TopicSaveUseCase(IOutputPort output, ValidateSaveRequest validateSaveRequest, TopicSaveHandler topicSaveHandler)
+        public TopicSaveUseCase(IOutputPort output,  ValidateSaveRequest validateSaveRequest, TopicSaveHandler topicSaveHandler)
         {
             this.output = output;
             this.validateSaveRequest = validateSaveRequest;
@@ -20,7 +20,7 @@ namespace Application.UseCases.Topic.Save
             try
             {
                 validateSaveRequest.ProcessRequest(request);
-                output.Standard(request.Topic.Id);
+                output.Standard(request.Topic);
             }
             catch (Exception ex)
             {

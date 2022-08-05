@@ -8,14 +8,13 @@ namespace Application.UseCases.Topic.Save
         public Guid Id { get; set; }
         public string Name { get; set; }
 
-        public TopicSaveRequest(string name, Domain.Entities.Category category)
+        public TopicSaveRequest(string name, Guid categoryId)
         {
-            Topic = new Domain.Entities.Topic(name, category);
+            Topic = new Domain.Entities.Topic(Guid.NewGuid(),name, categoryId);
         }
-        public TopicSaveRequest(Guid id, string name)
+        public TopicSaveRequest(Guid id, string name, Guid categoryId)
         {
-            Id = id;
-            Name = name;
+            Topic = new Domain.Entities.Topic(id, name, categoryId);
         }
     }
 }

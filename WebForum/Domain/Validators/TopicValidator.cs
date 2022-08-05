@@ -29,7 +29,7 @@ namespace Domain.Validators
                 .Cascade(CascadeMode.StopOnFirstFailure)
                 .NotNull();
 
-            RuleFor(x => x.Category.Id)
+            RuleFor(x => x.CategoryId)
                 .Cascade(CascadeMode.StopOnFirstFailure)
                 .Must(Validator)
                 .WithMessage("A categoria Id não pode ser nulo.");

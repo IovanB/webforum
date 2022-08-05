@@ -19,11 +19,11 @@ namespace WebForumApi.UseCase.Topic.Add
 
         [HttpPost]
         [Route("CreateTopic")]
-        [ProducesResponseType(typeof(Guid), 200)]
+        [ProducesResponseType(typeof(TopicResponse), 200)]
         [ProducesResponseType(typeof(ProblemDetails), 400)]
         public IActionResult CreateTopic([FromBody]TopicInput input)
         {
-            topicSaveUseCase.Execute(new TopicSaveRequest(input.CategoryId, input.Name));
+            topicSaveUseCase.Execute(new TopicSaveRequest(input.Name,input.CategoryId));
 
             return presenter.ViewModel;
         }

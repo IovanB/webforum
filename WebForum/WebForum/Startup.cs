@@ -16,8 +16,6 @@ using System.Linq;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Rewrite;
 using Autofac.Extensions.DependencyInjection;
-using Infrastructure.Modules;
-using WebForumApi.Modules;
 using WebForumApi.DependencyInjection;
 using Microsoft.Extensions.Localization;
 
