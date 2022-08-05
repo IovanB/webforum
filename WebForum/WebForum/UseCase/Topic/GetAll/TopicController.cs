@@ -1,0 +1,32 @@
+﻿using Application.UseCases.Topic.GetAll;
+using Microsoft.AspNetCore.Mvc;
+using System;
+using System.Collections.Generic;
+
+namespace WebForumApi.UseCase.Topic.GetAll
+{
+    [Route("api/[controller]")]
+    [ApiController]
+    public class TopicController : ControllerBase
+    {
+        private readonly TopicPresenter presenter;
+        private readonly ITopicGetAllUseCase topicGetAllUseCase;
+
+        public TopicController(TopicPresenter presenter, ITopicGetAllUseCase topicGetAllUseCase)
+        {
+            this.presenter = presenter;
+            this.topicGetAllUseCase = topicGetAllUseCase;
+        }
+
+        [HttpPost]
+        [Route("GetAllTopic")]
+        [ProducesResponseType(typeof(List<TopicResponse>), 200)]
+        [ProducesResponseType(typeof(ProblemDetails), 400)]
+        public IActionResult GetAllTopic()
+        {
+            topicGetAllUseCase.Execute();
+            
+            return presenter.ViewModel;
+        }
+    }
+}

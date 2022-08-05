@@ -2,9 +2,9 @@
 using System;
 using System.Collections.Generic;
 using System.Text;
-using WebForum.Application.Repositories;
-using WebForum.Application.UseCase.Comment;
-using WebForum.Domain.Entities;
+using Application.Repositories;
+using Application.UseCase.Comment;
+using Domain.Entities;
 using Xunit;
 
 namespace ForumTest.ApplicationTest

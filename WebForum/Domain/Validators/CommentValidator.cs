@@ -1,8 +1,8 @@
 ﻿using FluentValidation;
 using System;
-using WebForum.Domain.Entities;
+using Domain.Entities;
 
-namespace WebForum.Domain.Validators
+namespace Domain.Validators
 {
     public class CommentValidator : AbstractValidator<Comment>
     {
@@ -16,19 +16,19 @@ namespace WebForum.Domain.Validators
                 .NotEqual(new Guid())
                 .WithMessage("O id não pode ser um Guid vazio");
 
-            RuleFor(x => x.Author)
+            RuleFor(x => x.UserId)
                 .Cascade(CascadeMode.StopOnFirstFailure)
                 .NotNull()
-                .WithMessage("O autor não pode ser nulo.")
-                .NotEmpty()
-                .WithMessage("O campo não pode estar vazio.");
+                .WithMessage("O Id do autor não pode ser nulo.")
+                .NotEqual(new Guid())
+                .WithMessage("O Id do autor não pode ser um Guid vazio");
 
-            RuleFor(x => x.Post)
+            RuleFor(x => x.PostId)
                 .Cascade(CascadeMode.StopOnFirstFailure)
                 .NotNull()
-                .WithMessage("There must be an existent post")
-                .NotEmpty()
-                .WithMessage("There must be an existent post");
+                .WithMessage("O Id do post não pode ser nulo.")
+                .NotEqual(new Guid())
+                .WithMessage("O Id do post não pode ser um Guid vazio");
 
             RuleFor(x => x.Content)
                 .Cascade(CascadeMode.StopOnFirstFailure)

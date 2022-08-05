@@ -1,60 +1,67 @@
 ﻿using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Builder;
-using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.Extensions.Options;
-using Microsoft.OpenApi.Models;
 using System;
-using WebForum.Domain.Entities;
-using WebForum.Infrastructure.Context;
-using VueCliMiddleware;
-using WebForum.WebForumApi.ConfigureService;
+using Domain.Entities;
+using NSwag;
+using Microsoft.Extensions.Options;
+using WebForumApi.Swagger;
+using Microsoft.AspNetCore.Mvc;
+using Autofac;
+using Autofac.Configuration;
+using System.Linq;
+using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Rewrite;
+using Autofac.Extensions.DependencyInjection;
+using WebForumApi.DependencyInjection;
+using Microsoft.Extensions.Localization;
 
+[assembly: ApiConventionType(typeof(ApiConventions))]
 namespace WebForum
 {
     public class Startup
     {
-        readonly string MyAllowSpecificOrigins = "_myAllowSpecificOrigins";
-        private IConfiguration configuration;
-
         public Startup(IConfiguration configuration)
         {
-            this.configuration = configuration;
+            Configuration = configuration;
         }
-      
+        public IConfiguration Configuration { get; }
+        public ILifetimeScope AutofacContainer { get; private set; }
+
+        public void ConfigureContainer(ContainerBuilder builder)
+        {
+            builder.RegisterModule(new ConfigurationModule(Configuration));
+            builder.AddAutofacRegistration();
+        }
+
         public void ConfigureServices(IServiceCollection services)
         {
-            ConfigureService.ConfigureDependenciesService(services);
-
+            // services.AddAutofac();
             services.AddControllers();
-            services.AddSwaggerGen(c =>
-            {
-                c.SwaggerDoc("v1", new OpenApiInfo { Title = "WebForum API", Version = "v1" });
-                c.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme()
-                {
-                    In = ParameterLocation.Header,
-                    Description = "Entry key",
-                    Name = "Authorization",
-                    Type = SecuritySchemeType.ApiKey
-                });
 
-                c.AddSecurityRequirement(new OpenApiSecurityRequirement{
+            services.AddSwaggerDocument(document =>
+            {
+                document.Title = "Forum API";
+                document.Version = "v1";
+                document.PostProcess = s =>
+                {
+                    s.Paths.ToList().ForEach(p =>
                     {
-                        new OpenApiSecurityScheme
+                        p.Value.Parameters.Add(
+                        new OpenApiParameter()
                         {
-                            Reference = new OpenApiReference
-                            {
-                                Type = ReferenceType.SecurityScheme,
-                                Id = "Bearer"
-                            }
-                        },
-                        new string[]{ }
-                    }
-                });
-                
+                            Kind = OpenApiParameterKind.Header,
+                            Type = NJsonSchema.JsonObjectType.String,
+                            IsRequired = false,
+                            Name = "Accept-Language",
+                            Description = "pt-BR or en-US",
+                            Default = "pt-BR"
+                        });
+                    });
+                };
             });
 
             var signingConfigurations = new SigningConfigurations();
@@ -63,7 +70,7 @@ namespace WebForum
             var tokenConfigurations = new TokenConfiguration();
 
             new ConfigureFromConfigurationOptions<TokenConfiguration>(
-                configuration.GetSection("TokenConfigurations")
+                Configuration.GetSection("TokenConfigurations")
             )
             .Configure(tokenConfigurations);
 
@@ -101,40 +108,33 @@ namespace WebForum
                     .AddAuthenticationSchemes(JwtBearerDefaults.AuthenticationScheme‌​)
                     .RequireAuthenticatedUser().Build());
             });
-
-            using ApplicationContext context = new ApplicationContext();
-            context.Database.Migrate();
-            //CORS
-
-            services.AddCors(options =>
-            {
-                options.AddPolicy(MyAllowSpecificOrigins,
-                builder =>
-                {
-                    builder.WithOrigins("http://localhost:8080");
-                });
-            });
-
-            services.AddSpaStaticFiles(configuration =>
-            {
-                configuration.RootPath = "forumvue";
-            });
+           
         }
 
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
         {
-            app.UseCors(MyAllowSpecificOrigins);
-            app.UseSwagger();
+            var serviceProvider = app.ApplicationServices;
+            var resouces = serviceProvider.GetService<IStringLocalizer<ReturnMessages>>();
 
-            app.UseSwaggerUI(c =>
+            this.AutofacContainer = app.ApplicationServices.GetAutofacRoot();
+
+            app.UseOpenApi(config =>
             {
-                c.SwaggerEndpoint("/swagger/v1/swagger.json", "WebForum API V1");
-               
+                config.PostProcess = (document, request) =>
+                {
+                    document.Host = ExtractHost(request);
+                    document.BasePath = ExtractPath(request);
+                    document.Schemes.Clear();
+                };
             });
+            app.UseSwaggerUi3(config => config.TransformToExternalPath = (route, request) => ExtractPath(request) + route);
+            //Redireciona swagger como pagina inicial
+            var option = new RewriteOptions();
+            option.AddRedirect("^$", "swagger");
+
+            app.UseRewriter(option);
 
             app.UseRouting();
-            
-            app.UseSpaStaticFiles();
             
             app.UseAuthorization();
 
@@ -142,19 +142,19 @@ namespace WebForum
             {
                 endpoints.MapControllers();
             });
-
-            app.UseSpa(spa =>
-            {
-                if (env.IsDevelopment())
-                    spa.Options.SourcePath = "forumvue";
-                else
-                    spa.Options.SourcePath = "dist";
-                if (env.IsDevelopment())
-                {
-                    spa.UseVueCli(npmScript: "serve");
-                }
-            });
-
         }
+        private string ExtractHost(HttpRequest request) =>
+          request.Headers.ContainsKey("X-Forwarded-Host") ?
+              new Uri($"{ExtractProto(request)}://{request.Headers["X-Forwarded-Host"].First()}").Host :
+                  request.Host.Value;
+
+        private string ExtractProto(HttpRequest request) =>
+            request.Headers["X-Forwarded-Proto"].FirstOrDefault() ?? request.Protocol;
+
+        private string ExtractPath(HttpRequest request) =>
+            request.Headers.ContainsKey("X-Forwarded-Prefix") ?
+                request.Headers["X-Forwarded-Prefix"].FirstOrDefault() :
+                string.Empty;
     }
 }
+

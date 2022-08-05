@@ -1,46 +1,28 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
-using System.Text;
+using Domain.Validators;
 
-namespace WebForum.Domain.Entities
+namespace Domain.Entities
 {
-    [Table("Post")]
-    public class Post
+    public class Post : Entity
     {
-        [Key]
-        public Guid Id { get; private set; }
         public string Title { get; private set; }
         public string Content { get; private set; }
-        [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}")]
+        public Guid TopicId { get; private set; }
+        public Guid UserId { get; private set; }
         public DateTime CreatedAt { get; private set; }
-
-        public Topic Topic { get; private set; }
-        public User Author { get; private set; }
-
-        [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}")]
         public DateTime UpdatedAt { get; private set; }
 
-        public Post(string title, string content, Topic topicId, User user)
+        public Post(string title, string content, Guid topicId, Guid userId)
         {
             Id = Guid.NewGuid();
             Title = title;
             Content = content;
             CreatedAt = DateTime.Now;
-            Topic = topicId;
-            Author = user;
+            TopicId = topicId;
+            UserId = userId;
             UpdatedAt = DateTime.Now;
+            Validate(this,new PostValidator());
         }
-        public Post(Guid id, string title, string content, Topic topicId, DateTime createdAt)
-        {
-            Id = id;
-            Title = title;
-            Content = content;
-            CreatedAt = createdAt;
-            Topic = topicId;
-            UpdatedAt = DateTime.Now;
-        } 
         public Post()
         {
 

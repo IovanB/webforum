@@ -2,7 +2,7 @@
 using System.Security.Cryptography;
 
 
-namespace WebForum.Domain.Entities
+namespace Domain.Entities
 { 
     public class SigningConfigurations
     {

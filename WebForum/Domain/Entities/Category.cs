@@ -1,34 +1,28 @@
 ﻿using System;
-using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
+using Domain.Validators;
 
-namespace WebForum.Domain.Entities
+namespace Domain.Entities
 {
-    [Table("Category")]
-    public class Category
+    public class Category : Entity
     {
-        [Key]
-        public Guid Id{ get; private set; }
-        public string Name { get; private set; }
-
-        public Category(string name)
-        {
-            Id = Guid.NewGuid();
-            Name = name;
-          
-        }
-        public Category(Guid id)
-        {
-            Id = id;
-        }
-        public Category(Guid id, string name)
+        public string Name { get;  set; }
+        public DateTime? CreatedAt { get; set; }
+        public DateTime? UpdatedAt { get; set; }
+        public Category(Guid id,string name, DateTime? createdAt, DateTime? updatedAt)
         {
             Id = id;
             Name = name;
+            CreatedAt = createdAt;
+            UpdatedAt = updatedAt;
+            Validate(this,new CategoryValidator());
         }
-        public Category()
+        public Category(Guid id,string name)
         {
-
+            Id = id;
+            Name = name;
+            CreatedAt = CreatedAt;
+            UpdatedAt = DateTime.UtcNow;
+            Validate(this,new CategoryValidator());
         }
     }
 }

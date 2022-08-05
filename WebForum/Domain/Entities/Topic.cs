@@ -1,44 +1,28 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
-using System.Text;
+using Domain.Validators;
 
-namespace WebForum.Domain.Entities
-        
+namespace Domain.Entities
+
 {
-    [Table("Topic")]
-    public class Topic
+    public class Topic : Entity
     {
-        [Key]
-        public Guid Id { get; private set; }
-        
+        //private DateTime? createdAt;
+
         public string Name{ get; private set; }
-
-        [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}")]
-        public DateTime CreatedAt { get; private set; }
-
-        [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}")]
-        public DateTime UpdateTime { get; private set; }
-
-        public Category Category { get; set; }
-
-        public Topic(string name, Category category)
-        {
-            Id = Guid.NewGuid();
-            Name = name;
-            Category = category;
-            CreatedAt = DateTime.Now;
-            UpdateTime = DateTime.Now;
-        }
-
-
-        public Topic(Guid id, string name, DateTime createdAt)
+        public Guid CategoryId { get; private set; }
+        public DateTime CreatedAt { get;  set; }
+        //public DateTime? CreatedAt
+        //{
+        //    get { return createdAt; }
+        //    set { createdAt = value == null ? DateTime.UtcNow : value; }
+        //}
+        public DateTime UpdatedAt { get; set; }
+        public Topic(Guid id,string name, Guid categoryId)
         {
             Id = id;
             Name = name;
-            CreatedAt = createdAt;
-            UpdateTime = DateTime.Now;
+            CategoryId = categoryId;
+            Validate(this,new TopicValidator());
         }
         public Topic()
         {

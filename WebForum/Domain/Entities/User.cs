@@ -1,32 +1,18 @@
 ﻿using System;
-using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
+using Domain.Validators;
 
-namespace WebForum.Domain.Entities
+namespace Domain.Entities
 {
-    [Table("User")]
-    public class User 
+    public class User : Entity
     {
-        [Key]
-        public Guid Id { get; private set; }
-
         public string Name { get; private set; }
-        /*public string Login { get; private set; }*/
-
         public string Email { get; private set; }
-        [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}")]
+
         public DateTime Birthday { get; private set; }
 
         public string Password { get; private set; }
-
-        [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}")]
         public DateTime CreatedAt { get; private set; }
-
-        [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}")]
         public DateTime UpdatedAt { get; private set; }
-
-        public int UserType { get; private set; }
-
         public User(string name, string email, string password)
         {
             Id = Guid.NewGuid();
@@ -35,25 +21,8 @@ namespace WebForum.Domain.Entities
             Password = password;
             CreatedAt = DateTime.Now;
             UpdatedAt = DateTime.Now;
-            UserType = 0;
+            Validate(this,new UserValidator());
         }
-
-        public User(Guid id,
-            string name, 
-            string email, 
-            string password, 
-            DateTime createdAt, 
-            int userType)
-        {
-            Id = id;
-            Name = name;
-            Email = email;
-            Password = password;
-            CreatedAt = createdAt;
-            UpdatedAt = DateTime.Now;
-            UserType = userType;
-        }
-       
         public User()
         {
 

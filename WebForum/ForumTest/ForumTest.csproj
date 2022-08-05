@@ -17,9 +17,9 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Application\WebForum.Application.csproj" />
-    <ProjectReference Include="..\Infrastructure\WebForum.Infrastructure.csproj" />
-    <ProjectReference Include="..\WebForum\WebForum.WebForumApi.csproj" />
+    <ProjectReference Include="..\Application\Application.csproj" />
+    <ProjectReference Include="..\Infrastructure\Infrastructure.csproj" />
+    <ProjectReference Include="..\WebForum\WebForumApi.csproj" />
   </ItemGroup>
 
 </Project>

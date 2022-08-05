@@ -1,4 +1,4 @@
-﻿namespace WebForum.Domain.Entities
+﻿namespace Domain.Entities
 {
     public class TokenConfiguration
     {

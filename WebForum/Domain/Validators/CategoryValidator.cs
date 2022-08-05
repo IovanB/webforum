@@ -1,11 +1,8 @@
 ﻿using FluentValidation;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using WebForum.Domain.Entities;
+using Domain.Entities;
 
-namespace WebForum.Domain.Validators
+namespace Domain.Validators
 {
     public class CategoryValidator : AbstractValidator<Category>
     {
@@ -15,9 +12,9 @@ namespace WebForum.Domain.Validators
                 .Cascade(CascadeMode.StopOnFirstFailure)
                 .Must(Validator)
                 .NotNull()
-                .WithMessage("O id não pode ser nulo.")
+                .WithMessage("Id cannot be null")
                 .NotEqual(new Guid())
-                .WithMessage("O id não pode ser um Guid vazio");
+                .WithMessage("Id cannot be empty");
 
             RuleFor(x => x.Name)
                 .Cascade(CascadeMode.StopOnFirstFailure)

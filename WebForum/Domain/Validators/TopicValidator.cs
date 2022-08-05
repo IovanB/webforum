@@ -1,11 +1,8 @@
 ﻿using FluentValidation;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using WebForum.Domain.Entities;
+using Domain.Entities;
 
-namespace WebForum.Domain.Validators
+namespace Domain.Validators
 {
     public class TopicValidator : AbstractValidator<Topic>
     {
@@ -32,7 +29,7 @@ namespace WebForum.Domain.Validators
                 .Cascade(CascadeMode.StopOnFirstFailure)
                 .NotNull();
 
-            RuleFor(x => x.Category.Id)
+            RuleFor(x => x.CategoryId)
                 .Cascade(CascadeMode.StopOnFirstFailure)
                 .Must(Validator)
                 .WithMessage("A categoria Id não pode ser nulo.");

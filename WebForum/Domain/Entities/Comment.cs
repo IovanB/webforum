@@ -1,44 +1,25 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
+using Domain.Validators;
 
-namespace WebForum.Domain.Entities
+namespace Domain.Entities
 {
-    public class Comment
+    public class Comment : Entity
     {
-        [Key]
-        public Guid Id { get; private set; }
-        public User Author { get; private set; }
         public string Content { get; private set; }
-        
-        public Post Post { get; set; }
-        [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}")]
+        public Guid UserId { get; private set; }
+        public Guid PostId { get; set; }
         public DateTime CreatedAt { get; private set; }
-
-        [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}")]
         public DateTime UpdatedAt { get; private set; }
-
-
-        public Comment( string content, Post postId, User user)
+        public Comment(string content, Guid userId, Guid postId)
         {
             Id = Guid.NewGuid();
             Content = content;
-            Post = postId;
-            Author = user;
+            UserId = userId;
+            PostId = postId;
             CreatedAt = DateTime.Now;
             UpdatedAt = DateTime.Now;
+            Validate(this, new CommentValidator());
         }
-        public Comment(Guid id, string content, Post post, User user, DateTime createdAt)
-        {
-            Id = Guid.NewGuid();
-            Content = content;
-            Post = post;
-            Author = user;
-            CreatedAt = createdAt;
-            UpdatedAt = DateTime.Now;
-        }
-        
         public Comment()
         {
 
