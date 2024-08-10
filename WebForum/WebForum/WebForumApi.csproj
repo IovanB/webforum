@@ -1,68 +1,39 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk.Web">
-
   <PropertyGroup>
-    <TargetFramework>net5.0</TargetFramework>
+    <TargetFramework>net8.0</TargetFramework>
     <DockerComposeProjectPath>..\docker-compose.dcproj</DockerComposeProjectPath>
     <UserSecretsId>71c2a877-cc9c-487d-9fbb-d6d364ace4a1</UserSecretsId>
     <DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
   </PropertyGroup>
-
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
     <PlatformTarget>AnyCPU</PlatformTarget>
-    <DocumentationFile></DocumentationFile>
+    <DocumentationFile>
+    </DocumentationFile>
   </PropertyGroup>
-
   <ItemGroup>
     <Compile Remove="Controllers\**" />
-    <Compile Remove="UseCase\User\Add\**" />
-    <Compile Remove="UseCase\User\Delete\**" />
-    <Compile Remove="UseCase\User\GetAll\**" />
-    <Compile Remove="UseCase\User\Get\**" />
-    <Compile Remove="UseCase\User\Update\**" />
     <Content Remove="Controllers\**" />
-    <Content Remove="UseCase\User\Add\**" />
-    <Content Remove="UseCase\User\Delete\**" />
-    <Content Remove="UseCase\User\GetAll\**" />
-    <Content Remove="UseCase\User\Get\**" />
-    <Content Remove="UseCase\User\Update\**" />
     <EmbeddedResource Remove="Controllers\**" />
-    <EmbeddedResource Remove="UseCase\User\Add\**" />
-    <EmbeddedResource Remove="UseCase\User\Delete\**" />
-    <EmbeddedResource Remove="UseCase\User\GetAll\**" />
-    <EmbeddedResource Remove="UseCase\User\Get\**" />
-    <EmbeddedResource Remove="UseCase\User\Update\**" />
     <None Remove="Controllers\**" />
-    <None Remove="UseCase\User\Add\**" />
-    <None Remove="UseCase\User\Delete\**" />
-    <None Remove="UseCase\User\GetAll\**" />
-    <None Remove="UseCase\User\Get\**" />
-    <None Remove="UseCase\User\Update\**" />
   </ItemGroup>
-
   <ItemGroup>
-    <PackageReference Include="Autofac.Configuration" Version="6.0.0" />
+    <PackageReference Include="Autofac.Configuration" Version="7.0.0" />
     <PackageReference Include="Autofac.Extensions.DependencyInjection" Version="8.0.0" />
-    <PackageReference Include="AutoMapper" Version="11.0.1" />
-    <PackageReference Include="Hellang.Middleware.ProblemDetails" Version="6.4.2" />
-    <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="5.0.17" />
-    <PackageReference Include="Microsoft.AspNetCore.Hosting" Version="2.2.7" />
-    <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="5.0.17">
+    <PackageReference Include="AutoMapper" Version="13.0.1" />
+    <PackageReference Include="Hellang.Middleware.ProblemDetails" Version="6.5.1" />
+    <PackageReference Include="NSwag.AspNetCore" Version="14.1.0" />
+    <PackageReference Include="Serilog.AspNetCore" Version="8.0.2" />
+    <PackageReference Include="VueCliMiddleware" Version="6.0.0" />
+    <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="8.0.7" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="8.0.7">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
-    <PackageReference Include="Microsoft.VisualStudio.Azure.Containers.Tools.Targets" Version="1.16.1" />
-    <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="6.0.0" />
-    <PackageReference Include="Microsoft.Extensions.Options" Version="6.0.0" />
-    <PackageReference Include="NSwag.AspNetCore" Version="13.16.1" />
-    <PackageReference Include="Serilog.AspNetCore" Version="5.0.0" />
-    <PackageReference Include="System.Linq" Version="4.3.0" />
-    <PackageReference Include="VueCliMiddleware" Version="3.1.0" />
+    <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="8.0.1" />
+    <PackageReference Include="Microsoft.Extensions.Options" Version="8.0.2" />
   </ItemGroup>
-
   <ItemGroup>
     <ProjectReference Include="..\Application\Application.csproj" />
     <ProjectReference Include="..\Infrastructure\Infrastructure.csproj" />
   </ItemGroup>
-
-
 </Project>

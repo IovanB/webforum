@@ -12,7 +12,6 @@ namespace Infrastructure.Context
         public DbSet<Category> Category { get; set; }
         public DbSet<Topic> Topic { get; set; }
         public DbSet<Post> Post { get; set; }
-        public DbSet<User> User { get; set; }
         public DbSet<Comment> Comment { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
@@ -36,7 +35,6 @@ namespace Infrastructure.Context
             modelBuilder.ApplyConfiguration(new CategoryMap());
             modelBuilder.ApplyConfiguration(new TopicMap());
             modelBuilder.ApplyConfiguration(new PostMap());
-            modelBuilder.ApplyConfiguration(new UserMap());
             modelBuilder.ApplyConfiguration(new CommentMap());
             modelBuilder.Ignore<ValidationResult>();
 

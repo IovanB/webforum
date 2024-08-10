@@ -15,7 +15,8 @@ services:
       - webforum-network
   
   db:
-    image: postgres:9.5
+    # container_name: my_postgres_db
+    image: postgres:latest
     restart: always
     environment:  
       - POSTGRES_USER=postgres

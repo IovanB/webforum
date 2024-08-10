@@ -40,11 +40,8 @@ namespace Infrastructure.Modules
 
             if (!string.IsNullOrEmpty(connection))
             {
-                using (var context = new ApplicationContext())
-                {
-                    context.Database.Migrate();
-                    //ContextInitializer.Seed(context);
-                }
+                using var context = new ApplicationContext();
+                context.Database.Migrate();
             }
         }
     }

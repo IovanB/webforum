@@ -18,6 +18,7 @@ using Microsoft.AspNetCore.Rewrite;
 using Autofac.Extensions.DependencyInjection;
 using WebForumApi.DependencyInjection;
 using Microsoft.Extensions.Localization;
+using Infrastructure.PostgresData.Repository.UnitOfWork;
 
 [assembly: ApiConventionType(typeof(ApiConventions))]
 namespace WebForum
@@ -42,6 +43,8 @@ namespace WebForum
             // services.AddAutofac();
             services.AddControllers();
 
+            services.AddScoped<IUnitOfWork, UnitOfWork>();
+
             services.AddSwaggerDocument(document =>
             {
                 document.Title = "Forum API";
@@ -63,51 +66,6 @@ namespace WebForum
                     });
                 };
             });
-
-            var signingConfigurations = new SigningConfigurations();
-            services.AddSingleton(signingConfigurations);
-
-            var tokenConfigurations = new TokenConfiguration();
-
-            new ConfigureFromConfigurationOptions<TokenConfiguration>(
-                Configuration.GetSection("TokenConfigurations")
-            )
-            .Configure(tokenConfigurations);
-
-            services.AddSingleton(tokenConfigurations);
-
-
-            services.AddAuthentication(authOptions =>
-            {
-                authOptions.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
-                authOptions.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
-            }).AddJwtBearer(bearerOptions =>
-            {
-                var paramsValidation = bearerOptions.TokenValidationParameters;
-                paramsValidation.IssuerSigningKey = signingConfigurations.Key;
-                paramsValidation.ValidAudience = tokenConfigurations.Audience;
-                paramsValidation.ValidIssuer = tokenConfigurations.Issuer;
-
-                // Validates the signing of a received token
-                paramsValidation.ValidateIssuerSigningKey = true;
-
-                // Checks if a received token is still valid
-                paramsValidation.ValidateLifetime = true;
-
-                // Tolerance time for the expiration of a token (used in case
-                // of time synchronization problems between different
-                // computers involved in the communication process)
-                paramsValidation.ClockSkew = TimeSpan.Zero;
-            });
-
-            // Enables the use of the token as a means of
-            // authorizing access to this project's resources
-            services.AddAuthorization(auth =>
-            {
-                auth.AddPolicy("Bearer", new AuthorizationPolicyBuilder()
-                    .AddAuthenticationSchemes(JwtBearerDefaults.AuthenticationScheme‌​)
-                    .RequireAuthenticatedUser().Build());
-            });
            
         }
 
@@ -118,6 +76,7 @@ namespace WebForum
 
             this.AutofacContainer = app.ApplicationServices.GetAutofacRoot();
 
+
             app.UseOpenApi(config =>
             {
                 config.PostProcess = (document, request) =>
@@ -127,7 +86,7 @@ namespace WebForum
                     document.Schemes.Clear();
                 };
             });
-            app.UseSwaggerUi3(config => config.TransformToExternalPath = (route, request) => ExtractPath(request) + route);
+            app.UseSwaggerUi(config => config.TransformToExternalPath = (route, request) => ExtractPath(request) + route);
             //Redireciona swagger como pagina inicial
             var option = new RewriteOptions();
             option.AddRedirect("^$", "swagger");
