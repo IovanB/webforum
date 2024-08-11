@@ -35,14 +35,26 @@ namespace Infrastructure.Modules
                 .As<IMapper>()
                 .InstancePerLifetimeScope();
 
-            builder.RegisterType<ApplicationContext>().InstancePerLifetimeScope();
+            //builder.RegisterType<ApplicationContext>().InstancePerLifetimeScope();
 
 
-            if (!string.IsNullOrEmpty(connection))
+            //if (!string.IsNullOrEmpty(connection))
+            //{
+            //    using var context = new ApplicationContext();
+            //    context.Database.Migrate();
+            //}
+
+            builder.Register(c =>
             {
-                using var context = new ApplicationContext();
-                context.Database.Migrate();
-            }
+                var optionsBuilder = new DbContextOptionsBuilder<ApplicationContext>();
+                optionsBuilder.UseNpgsql(connection); // Assuming PostgreSQL
+                return new ApplicationContext(optionsBuilder.Options);
+            }).AsSelf().InstancePerLifetimeScope();
+
+            // Optional: Register IDbContextFactory if needed
+            builder.RegisterType<ApplicationContext>()
+                .As<DbContext>()
+                .InstancePerLifetimeScope();
         }
     }
 }

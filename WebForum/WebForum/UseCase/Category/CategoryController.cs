@@ -1,7 +1,6 @@
 ﻿using Application.UseCases;
 using Microsoft.AspNetCore.Mvc;
 using System;
-using System.Linq;
 using System.Threading.Tasks;
 
 namespace WebForumApi.UseCase.Category
@@ -19,7 +18,7 @@ namespace WebForumApi.UseCase.Category
             try
             {
                 await useCase.Insert(new Domain.Entities.Category(0, input.Name));
-                return Ok();
+                return Ok("Category created");
             }
             catch (Exception)
             {
@@ -37,7 +36,7 @@ namespace WebForumApi.UseCase.Category
             try
             {
                 await useCase.DeleteEntity(input.Id);
-                return Ok();
+                return Ok("Category deleted");
             }
             catch (Exception)
             {
@@ -92,7 +91,7 @@ namespace WebForumApi.UseCase.Category
             try
             {
                 await useCase.UpdateEntity(new Domain.Entities.Category(input.Id, input.Name));
-                return Ok();
+                return Ok("Category has been updated.");
             }
             catch (Exception)
             {
