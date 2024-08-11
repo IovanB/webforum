@@ -21,8 +21,7 @@ namespace Application.UseCases
 
             try
             {
-                var topic = await _unitOfWork.Topics.GetById(id);
-                _unitOfWork.Topics.Delete(topic);
+                await _unitOfWork.Topics.Delete(id);
                 await _unitOfWork.CommitAsync();
             }
             catch (Exception)

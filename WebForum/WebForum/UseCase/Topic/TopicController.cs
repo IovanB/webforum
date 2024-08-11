@@ -49,14 +49,14 @@ namespace WebForumApi.UseCase.Topic
             }
         }
         [HttpPost]
-        [Route("GetTopicById")]
+        [Route("GetTopicById/{id}")]
         [ProducesResponseType(typeof(Domain.Entities.Topic), 200)]
         [ProducesResponseType(typeof(ProblemDetails), 400)]
-        public async Task<IActionResult> GetTopicById([FromBody] TopicInput input)
+        public async Task<IActionResult> GetTopicById(int id)
         {
             try
             {
-                var topic = await useCase.GetById(input.Id);
+                var topic = await useCase.GetById(id);
                 if (topic == null)
                     return NotFound("Topic Not Found");
                 return Ok(topic);

@@ -19,11 +19,11 @@ namespace Infrastructure.Data.Entity.Map
             .OnDelete(DeleteBehavior.Cascade);
 
             builder.Property(t => t.CreatedAt)
-            .HasDefaultValueSql("CURRENT_TIMESTAMP");
+            .HasDefaultValueSql("CURRENT_TIMESTAMP")
+            .ValueGeneratedOnAddOrUpdate();
 
             builder.Property(t => t.UpdatedAt)
-                .HasDefaultValueSql("CURRENT_TIMESTAMP")
-                .ValueGeneratedOnAddOrUpdate();
+                .HasDefaultValueSql("CURRENT_TIMESTAMP");
         }
     }
 }

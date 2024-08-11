@@ -22,8 +22,7 @@ namespace Application.UseCases
 
             try
             {
-                var category = await _unitOfWork.Categories.GetById(id);
-                _unitOfWork.Categories.Delete(category);
+                await _unitOfWork.Categories.Delete(id);
                 await _unitOfWork.CommitAsync();
             }
             catch (Exception)

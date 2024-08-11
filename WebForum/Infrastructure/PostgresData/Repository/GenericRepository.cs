@@ -27,9 +27,9 @@ namespace Infrastructure.PostgresData.Repository
             await _dbSet.AddAsync(infrastructureEntity); 
         }
 
-        public void Delete(TDomain entity)
+        public async Task Delete(int id)
         {
-            var infrastructureEntity = _mapper.Map<TInfrastructure>(entity);
+            TInfrastructure infrastructureEntity = await _dbSet.FindAsync(id);
 
             if (_context.Entry(infrastructureEntity).State == EntityState.Detached)
             {

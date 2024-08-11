@@ -50,14 +50,14 @@ namespace WebForumApi.UseCase.Post
         }
 
         [HttpPost]
-        [Route("GetPostById")]
+        [Route("GetPostById/{id}")]
         [ProducesResponseType(typeof(Guid), 200)]
         [ProducesResponseType(typeof(ProblemDetails), 400)]
-        public async Task<IActionResult> GetPostById([FromBody] PostInput input)
+        public async Task<IActionResult> GetPostById(int id)
         {
             try
             {
-                var post = await useCase.GetById(input.Id);
+                var post = await useCase.GetById(id);
                 if (post == null)
                     return NotFound("Post Not Found");
                 return Ok(post);

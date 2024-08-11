@@ -15,11 +15,11 @@ namespace Infrastructure.Data.Entity.Map
             builder.HasOne(f => f.Post).WithOne(x => x.Comment).HasForeignKey<Comment>(x => x.PostId);
             builder.Property(x => x.Content).IsRequired();
             builder.Property(p => p.CreatedAt)
-            .HasDefaultValueSql("CURRENT_TIMESTAMP");
-
-            builder.Property(p => p.UpdatedAt)
             .HasDefaultValueSql("CURRENT_TIMESTAMP")
             .ValueGeneratedOnAddOrUpdate();
+
+            builder.Property(p => p.UpdatedAt)
+            .HasDefaultValueSql("CURRENT_TIMESTAMP");
         }
     }
 }

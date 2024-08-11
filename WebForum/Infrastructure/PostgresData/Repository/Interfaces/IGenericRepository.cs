@@ -9,6 +9,6 @@ namespace Infrastructure.PostgresData.Repository.Interfaces
         Task<T> GetById(int id);    
         Task Add(T entity);
         void Update(T entity);
-        void Delete(T entity);
+        Task Delete(int id);
     }
 }
