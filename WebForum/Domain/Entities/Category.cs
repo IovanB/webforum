@@ -1,28 +1,12 @@
 ﻿using System;
-using Domain.Validators;
+using System.ComponentModel.DataAnnotations;
 
 namespace Domain.Entities
 {
-    public class Category : Entity
+    public class Category(int id, string name)
     {
-        public string Name { get;  set; }
-        public DateTime? CreatedAt { get; set; }
-        public DateTime? UpdatedAt { get; set; }
-        public Category(Guid id,string name, DateTime? createdAt, DateTime? updatedAt)
-        {
-            Id = id;
-            Name = name;
-            CreatedAt = createdAt;
-            UpdatedAt = updatedAt;
-            Validate(this,new CategoryValidator());
-        }
-        public Category(Guid id,string name)
-        {
-            Id = id;
-            Name = name;
-            CreatedAt = CreatedAt;
-            UpdatedAt = DateTime.UtcNow;
-            Validate(this,new CategoryValidator());
-        }
+        [Required]
+        public string Name { get; private set; } = name;
+        public int Id { get; private set; } = id;   
     }
 }

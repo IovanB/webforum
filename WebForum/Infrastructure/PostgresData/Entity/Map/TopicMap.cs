@@ -10,7 +10,20 @@ namespace Infrastructure.Data.Entity.Map
         {
             builder.ToTable("Topic", "webforum");
             builder.HasKey(k => k.Id);
-            builder.HasOne(x => x.Category).WithOne().HasForeignKey<Topic>(s => s.CategoryId);
+            builder.Property(t => t.Id)
+            .ValueGeneratedOnAdd();
+
+            builder.HasOne(t => t.Category)
+            .WithMany()  
+            .HasForeignKey(t => t.CategoryId)
+            .OnDelete(DeleteBehavior.Cascade);
+
+            builder.Property(t => t.CreatedAt)
+            .HasDefaultValueSql("CURRENT_TIMESTAMP");
+
+            builder.Property(t => t.UpdatedAt)
+                .HasDefaultValueSql("CURRENT_TIMESTAMP")
+                .ValueGeneratedOnAddOrUpdate();
         }
     }
 }

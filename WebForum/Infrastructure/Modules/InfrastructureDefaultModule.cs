@@ -3,6 +3,7 @@ using AutoMapper;
 using AutoMapper.Extensions.ExpressionMapping;
 using Infrastructure.Context;
 using Infrastructure.Data.AutoMapperProfile;
+using Infrastructure.PostgresData.Repository.UnitOfWork;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -35,17 +36,22 @@ namespace Infrastructure.Modules
                 .As<IMapper>()
                 .InstancePerLifetimeScope();
 
-            builder.RegisterType<ApplicationContext>().InstancePerLifetimeScope();
 
-
-            if (!string.IsNullOrEmpty(connection))
+            builder.Register(c =>
             {
-                using (var context = new ApplicationContext())
-                {
-                    context.Database.Migrate();
-                    //ContextInitializer.Seed(context);
-                }
-            }
+                var optionsBuilder = new DbContextOptionsBuilder<ApplicationContext>();
+                optionsBuilder.UseNpgsql(connection); // Assuming PostgreSQL
+                return new ApplicationContext(optionsBuilder.Options);
+            }).AsSelf().InstancePerLifetimeScope();
+
+            // Optional: Register IDbContextFactory if needed
+            builder.RegisterType<ApplicationContext>()
+                .As<DbContext>()
+                .InstancePerLifetimeScope();
+
+            builder.RegisterType<UnitOfWork>()
+               .As<IUnitOfWork>()
+               .InstancePerLifetimeScope();
         }
     }
 }

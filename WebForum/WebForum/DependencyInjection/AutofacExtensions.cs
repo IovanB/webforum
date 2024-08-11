@@ -1,4 +1,5 @@
-﻿using Autofac;
+﻿using Application.Modules;
+using Autofac;
 using Infrastructure.Modules;
 using WebForumApi.Modules;
 

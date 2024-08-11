@@ -1,28 +1,19 @@
-﻿using System;
-using Domain.Validators;
+﻿using System.ComponentModel.DataAnnotations;
 
 namespace Domain.Entities
 {
-    public class Comment : Entity
+    public class Comment 
     {
+        public int Id { get; set; }
+        [Required]
         public string Content { get; private set; }
-        public Guid UserId { get; private set; }
-        public Guid PostId { get; set; }
-        public DateTime CreatedAt { get; private set; }
-        public DateTime UpdatedAt { get; private set; }
-        public Comment(string content, Guid userId, Guid postId)
+        [Required]
+        public int PostId { get; set; }
+        public Comment(int id, string content, int postId)
         {
-            Id = Guid.NewGuid();
+            Id = id;
             Content = content;
-            UserId = userId;
             PostId = postId;
-            CreatedAt = DateTime.Now;
-            UpdatedAt = DateTime.Now;
-            Validate(this, new CommentValidator());
-        }
-        public Comment()
-        {
-
         }
     }
 }
