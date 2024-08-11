@@ -6,8 +6,8 @@ using System.Threading.Tasks;
 
 namespace WebForumApi.UseCase.Comment
 {
-    [Route("api/[controller]")]
     [ApiController]
+    [Route("api/[controller]")]
     public class CommentController : ControllerBase
     {
         private readonly ICommonUseCase<Domain.Entities.Comment> useCase;
@@ -34,13 +34,13 @@ namespace WebForumApi.UseCase.Comment
         }
 
         [HttpDelete]
-        [Route("DeleteComment")]
+        [Route("DeleteComment/{id}")]
         [ProducesResponseType(typeof(ProblemDetails), 400)]
-        public async Task<IActionResult> DeleteComment([FromBody] CommentInput input)
+        public async Task<IActionResult> DeleteComment(int id)
         {
             try
             {
-                await useCase.DeleteEntity(input.Id);
+                await useCase.DeleteEntity(id);
                 return Ok("Comment deleted");
             }
             catch (Exception)

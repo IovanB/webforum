@@ -6,11 +6,11 @@ using System.Threading.Tasks;
 
 namespace Application.UseCases
 {
-    public class CommentGetAllUseCase : ICommonUseCase<Domain.Entities.Comment>
+    public class CommentUseCase : ICommonUseCase<Domain.Entities.Comment>
     {
         private readonly IUnitOfWork _unitOfWork;
 
-        public CommentGetAllUseCase(IUnitOfWork unitOfWork)
+        public CommentUseCase(IUnitOfWork unitOfWork)
         {
             _unitOfWork = unitOfWork;
         }

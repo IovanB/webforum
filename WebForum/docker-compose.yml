@@ -1,13 +1,8 @@
 version: '3.9'
 
 services:
-  webforum.webforumapi:
-    image: ${DOCKER_REGISTRY-}webforumwebforumapi
+  webforumapi:
+    image: ${DOCKER_REGISTRY-}webforumapi
     build:
       context: .
       dockerfile: WebForum/Dockerfile
-    networks:
-     - webforum-network
-
-networks:
-   webforum-network:

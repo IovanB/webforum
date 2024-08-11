@@ -1,45 +1,53 @@
 version: '3.9'
 
 services:
-  webforum.webforumapi:
+  webforumapi:
     environment:
-      ASPNETCORE_ENVIRONMENT: Development
-      DATABASE_CONN: Host=db;Database=webforum;Username=postgres;Password=postgres
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ASPNETCORE_HTTP_PORTS=8080
+      - ASPNETCORE_HTTPS_PORTS=8081
+      - DATABASE_CONN=Host=db;Database=webforum;Username=postgres;Password=postgres
     ports:
-      - "8080:80"  # Expose port 80 inside the container to port 8080 on the host
+      - "8080"
+      - "8081"
+    volumes:
+      - ${APPDATA}/Microsoft/UserSecrets:/home/app/.microsoft/usersecrets:ro
+      - ${APPDATA}/ASP.NET/Https:/home/app/.aspnet/https:ro
     depends_on:
       - db
-    volumes:
-      - ${APPDATA}/Microsoft/UserSecrets:/root/.microsoft/usersecrets:ro
     networks:
       - webforum-network
-  
   db:
     image: postgres:latest
     restart: always
-    environment:  
-      - POSTGRES_USER=postgres
-      - POSTGRES_PASSWORD=postgres
-    ports:
-      - 5452:5452  # Map PostgreSQL port inside container to port 5452 on the host
+    environment:
+      POSTGRES_USER: api@api.com
+      POSTGRES_PASSWORD: postgres
     volumes:
       - pgdata:/var/lib/postgresql/data
     networks:
       - webforum-network
-  
-  pg-admin:
+    ports:
+      - "5432:5432"  # Map container port 5432 to host port 5432
+
+  pgadmin:
     image: dpage/pgadmin4
+    restart: always
     environment:
       PGADMIN_DEFAULT_EMAIL: "api@api.com"
       PGADMIN_DEFAULT_PASSWORD: "postgres"
     ports:
-      - "16543:80"  # Map pgAdmin port inside container to port 16543 on the host
+      - "16543:80"  # Map container port 80 to host port 16543
     depends_on:
       - db
     networks:
       - webforum-network
+    volumes:
+      - pgadmin-data:/var/lib/pgadmin
 
 networks:
   webforum-network:
+
 volumes:
   pgdata:
+  pgadmin-data:

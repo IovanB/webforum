@@ -1,11 +1,10 @@
-﻿using Application.UseCases;
-using Infrastructure.PostgresData.Repository.UnitOfWork;
+﻿using Infrastructure.PostgresData.Repository.UnitOfWork;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace WebForum.Application.UseCases.Topic
+namespace Application.UseCases
 {
     public class TopicUseCase : ICommonUseCase<Domain.Entities.Topic>
     {

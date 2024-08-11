@@ -7,11 +7,11 @@ using System.Linq;
 
 namespace Application.UseCases
 {
-    public class PostGetAllUseCase : ICommonUseCase<Domain.Entities.Post>
+    public class PostUseCase : ICommonUseCase<Domain.Entities.Post>
     {
         private readonly IUnitOfWork _unitOfWork;
 
-        public PostGetAllUseCase(IUnitOfWork unitOfWork)
+        public PostUseCase(IUnitOfWork unitOfWork)
         {
             _unitOfWork = unitOfWork;
         }

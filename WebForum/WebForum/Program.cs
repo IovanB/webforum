@@ -66,6 +66,12 @@ public class Program
         // Build the WebApplication
         var app = builder.Build();
 
+        using (var scope = app.Services.CreateScope())
+        {
+            var context = scope.ServiceProvider.GetRequiredService<ApplicationContext>();
+            context.Database.Migrate();
+        }
+
         // Autofac container
         var autofacContainer = app.Services.GetAutofacRoot();
 
@@ -77,7 +83,7 @@ public class Program
             app.UseSwaggerUI(c =>
             {
                 c.SwaggerEndpoint("/swagger/v1/swagger.json", "WEB FORUM API V1");
-                c.RoutePrefix = string.Empty; // Serve Swagger UI at the root of the app
+                c.RoutePrefix = string.Empty; 
             });
 
             // Redirect to Swagger UI when the root URL is accessed

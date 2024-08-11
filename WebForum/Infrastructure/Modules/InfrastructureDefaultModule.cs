@@ -3,6 +3,7 @@ using AutoMapper;
 using AutoMapper.Extensions.ExpressionMapping;
 using Infrastructure.Context;
 using Infrastructure.Data.AutoMapperProfile;
+using Infrastructure.PostgresData.Repository.UnitOfWork;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -35,14 +36,6 @@ namespace Infrastructure.Modules
                 .As<IMapper>()
                 .InstancePerLifetimeScope();
 
-            //builder.RegisterType<ApplicationContext>().InstancePerLifetimeScope();
-
-
-            //if (!string.IsNullOrEmpty(connection))
-            //{
-            //    using var context = new ApplicationContext();
-            //    context.Database.Migrate();
-            //}
 
             builder.Register(c =>
             {
@@ -55,6 +48,10 @@ namespace Infrastructure.Modules
             builder.RegisterType<ApplicationContext>()
                 .As<DbContext>()
                 .InstancePerLifetimeScope();
+
+            builder.RegisterType<UnitOfWork>()
+               .As<IUnitOfWork>()
+               .InstancePerLifetimeScope();
         }
     }
 }

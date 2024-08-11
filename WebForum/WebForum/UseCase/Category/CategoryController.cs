@@ -1,17 +1,17 @@
 ﻿using Application.UseCases;
 using Microsoft.AspNetCore.Mvc;
 using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace WebForumApi.UseCase.Category
 {
-    [Route("api/[controller]")]
     [ApiController]
+    [Route("api/[controller]")]
     public class CategoryController(ICommonUseCase<Domain.Entities.Category> useCase) : ControllerBase
     {
         [HttpPost]
         [Route("CreateCategory")]
-        [ProducesResponseType(typeof(Guid), 200)]
         [ProducesResponseType(typeof(ProblemDetails), 400)]
         public async Task<IActionResult> CreateCategory([FromBody] CategoryInput input)
         {
@@ -28,14 +28,13 @@ namespace WebForumApi.UseCase.Category
         }
 
         [HttpDelete]
-        [Route("DeleteCategory")]
-        [ProducesResponseType(typeof(Guid), 200)]
+        [Route("DeleteCategory/{id}")]
         [ProducesResponseType(typeof(ProblemDetails), 400)]
-        public async Task<IActionResult> DeleteCategory([FromBody] CategoryInput input)
+        public async Task<IActionResult> DeleteCategory(int id)
         {
             try
             {
-                await useCase.DeleteEntity(input.Id);
+                await useCase.DeleteEntity(id);
                 return Ok("Category deleted");
             }
             catch (Exception)
@@ -46,7 +45,7 @@ namespace WebForumApi.UseCase.Category
 
         [HttpPost]
         [Route("GetCategoryById")]
-        [ProducesResponseType(typeof(Guid), 200)]
+        [ProducesResponseType(typeof(Domain.Entities.Category), 200)]
         [ProducesResponseType(typeof(ProblemDetails), 400)]
         public async Task<IActionResult> GetCategoryById([FromBody] CategoryInput input)
         {
@@ -65,7 +64,7 @@ namespace WebForumApi.UseCase.Category
 
         [HttpPost]
         [Route("GetAllCategories")]
-        [ProducesResponseType(typeof(Guid), 200)]
+        [ProducesResponseType(typeof(List<Domain.Entities.Category>), 200)]
         [ProducesResponseType(typeof(ProblemDetails), 400)]
         public async Task<IActionResult> GetAllCategories()
         {
@@ -84,7 +83,6 @@ namespace WebForumApi.UseCase.Category
 
         [HttpPut]
         [Route("UpdateCategory")]
-        [ProducesResponseType(typeof(Guid), 200)]
         [ProducesResponseType(typeof(ProblemDetails), 400)]
         public async Task<IActionResult> UpdateCategory([FromBody] CategoryInput input)
         {

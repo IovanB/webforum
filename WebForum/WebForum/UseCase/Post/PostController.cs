@@ -6,8 +6,8 @@ using System.Threading.Tasks;
 
 namespace WebForumApi.UseCase.Post
 {
-    [Route("api/[controller]")]
     [ApiController]
+    [Route("api/[controller]")]
     public class PostController : ControllerBase
     {
         private readonly ICommonUseCase<Domain.Entities.Post> useCase;
@@ -34,13 +34,13 @@ namespace WebForumApi.UseCase.Post
         }
 
         [HttpDelete]
-        [Route("DeletePost")]
+        [Route("DeletePost/{id}")]
         [ProducesResponseType(typeof(ProblemDetails), 400)]
-        public async Task<IActionResult> DeletePost([FromBody] PostInput input)
+        public async Task<IActionResult> DeletePost(int id)
         {
             try
             {
-                await useCase.DeleteEntity(input.Id);
+                await useCase.DeleteEntity(id);
                 return Ok("Post deleted");
             }
             catch (Exception)
