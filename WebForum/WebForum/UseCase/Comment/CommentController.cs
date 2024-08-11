@@ -50,14 +50,14 @@ namespace WebForumApi.UseCase.Comment
         }
 
         [HttpPost]
-        [Route("GetCommentById")]
+        [Route("GetCommentById/{id}")]
         [ProducesResponseType(typeof(Domain.Entities.Comment), 200)]
         [ProducesResponseType(typeof(ProblemDetails), 400)]
-        public async Task<IActionResult> GetCommentById([FromBody] CommentInput input)
+        public async Task<IActionResult> GetCommentById(int id)
         {
             try
             {
-                var comment = await useCase.GetById(input.Id);
+                var comment = await useCase.GetById(id);
                 if (comment == null)
                     return NotFound("Comment Not Found");
                 return Ok(comment);

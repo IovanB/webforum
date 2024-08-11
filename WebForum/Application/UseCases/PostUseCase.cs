@@ -22,8 +22,7 @@ namespace Application.UseCases
 
             try
             {
-                var post = await _unitOfWork.Posts.GetById(id);
-                _unitOfWork.Posts.Delete(post);
+                await _unitOfWork.Posts.Delete(id);
                 await _unitOfWork.CommitAsync();
             }
             catch (Exception)

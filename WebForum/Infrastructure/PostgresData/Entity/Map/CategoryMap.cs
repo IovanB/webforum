@@ -16,11 +16,11 @@ namespace Infrastructure.Data.Entity.Map
 
             builder.Property(p => p.Name).IsRequired().HasMaxLength(255);
             builder.Property(p => p.CreatedAt)
-            .HasDefaultValueSql("CURRENT_TIMESTAMP");
-
-            builder.Property(p => p.UpdatedAt)
             .HasDefaultValueSql("CURRENT_TIMESTAMP")
             .ValueGeneratedOnAddOrUpdate();
+
+            builder.Property(p => p.UpdatedAt)
+            .HasDefaultValueSql("CURRENT_TIMESTAMP");
 
         }
     }

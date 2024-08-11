@@ -44,14 +44,14 @@ namespace WebForumApi.UseCase.Category
         }
 
         [HttpPost]
-        [Route("GetCategoryById")]
+        [Route("GetCategoryById/{id}")]
         [ProducesResponseType(typeof(Domain.Entities.Category), 200)]
         [ProducesResponseType(typeof(ProblemDetails), 400)]
-        public async Task<IActionResult> GetCategoryById([FromBody] CategoryInput input)
+        public async Task<IActionResult> GetCategoryById(int id)
         {
             try
             {
-                var category = await useCase.GetById(input.Id);
+                var category = await useCase.GetById(id);
                 if (category == null)
                     return NotFound("Category Not Found");
                 return Ok(category);

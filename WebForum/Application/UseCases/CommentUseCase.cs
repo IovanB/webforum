@@ -21,8 +21,7 @@ namespace Application.UseCases
 
             try
             {
-                var comment = await _unitOfWork.Comments.GetById(id);
-                _unitOfWork.Comments.Delete(comment);
+                await _unitOfWork.Comments.Delete(id);
                 await _unitOfWork.CommitAsync();
             }
             catch (Exception)
